@@ -1,0 +1,9 @@
+Base path: D:/Programme/Unity3D/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-3-6560
+Cmd: getPlatforms
+Cmd: compileSnippet
+  api=8 type=0 insize=1612 outsize=2982 kw= ok=1
+Unhandled exception: Readfile from pipe failed. GLE=Die Pipe wurde beendet.
+
+
+Quitting shader compiler process

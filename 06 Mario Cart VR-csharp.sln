@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{BDCE9832-672C-EEB1-6CF4-A7A79EA7CE6D}") = "06 Mario Cart VR", "Assembly-CSharp-firstpass-vs.csproj", "{CABCEB06-2F26-E593-035C-615B1569A77E}"
+EndProject
+Project("{BDCE9832-672C-EEB1-6CF4-A7A79EA7CE6D}") = "06 Mario Cart VR", "Assembly-CSharp-vs.csproj", "{C2A98A3D-A154-50D4-8962-C828B15D726F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CABCEB06-2F26-E593-035C-615B1569A77E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CABCEB06-2F26-E593-035C-615B1569A77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CABCEB06-2F26-E593-035C-615B1569A77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CABCEB06-2F26-E593-035C-615B1569A77E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2A98A3D-A154-50D4-8962-C828B15D726F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A98A3D-A154-50D4-8962-C828B15D726F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A98A3D-A154-50D4-8962-C828B15D726F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A98A3D-A154-50D4-8962-C828B15D726F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+																											GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal

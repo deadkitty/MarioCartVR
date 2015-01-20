@@ -1,0 +1,461 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 7800 Series (ID=0x6818)
+    Vendor:   ATI
+    VRAM:     2030 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.127 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+Platform assembly: D:\Soi Fon\Unity3D\06 Mario Cart VR\bin\Mario Cart VR_Data\Managed\System.Core.dll (this message is harmless)
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+Hostlist Received
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnMasterServerEvent(MasterServerEvent) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\NetworkManager.cs:70)
+ 
+(Filename: D Line: 0)
+
+Hostlist Received
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnMasterServerEvent(MasterServerEvent) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\NetworkManager.cs:70)
+ 
+(Filename: D Line: 0)
+
+Spawn Player
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:SpawnPlayer() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\NetworkManager.cs:104)
+NetworkManager:StartRace() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\NetworkManager.cs:97)
+ 
+(Filename: D Line: 0)
+
+CartTime.StartRace
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+CartTimer:StartRace() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\CartTimer.cs:45)
+NetworkManager:StartRace() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\NetworkManager.cs:99)
+ 
+(Filename: D Line: 0)
+
+Player.Start
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:Start() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:25)
+ 
+(Filename: D Line: 0)
+
+Player.Start
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:Start() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:25)
+ 
+(Filename: D Line: 0)
+
+OnTrigger Enter: finishLine2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+FinishLineListener:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\FinishLineListener.cs:17)
+ 
+(Filename: D Line: 0)
+
+OnTrigger Enter: finishLine2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+FinishLineListener:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\FinishLineListener.cs:17)
+ 
+(Filename: D Line: 0)
+
+OnTrigger Enter: finishLine0
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+FinishLineListener:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\FinishLineListener.cs:17)
+ 
+(Filename: D Line: 0)
+
+mushroom
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Item:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:55)
+ 
+(Filename: D Line: 0)
+
+RPC.Item.DisableItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Item:DisableItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:81)
+UnityEngine.NetworkView:Internal_RPC(NetworkView, String, RPCMode, Object[])
+UnityEngine.NetworkView:RPC(String, RPCMode, Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:408)
+Item:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:74)
+ 
+(Filename: D Line: 0)
+
+RPC.Item.DisableItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Item:DisableItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:81)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Item.EnableItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Item:EnableItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:91)
+Item:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:44)
+ 
+(Filename: D Line: 0)
+
+OnTrigger Enter: finishLine0
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+FinishLineListener:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\FinishLineListener.cs:17)
+ 
+(Filename: D Line: 0)
+
+RPC.Item.DisableItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Item:DisableItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:81)
+ 
+(Filename: D Line: 0)
+
+Item.EnableItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Item:EnableItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:91)
+Item:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:44)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+RPC.Item.DisableItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Item:DisableItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:81)
+ 
+(Filename: D Line: 0)
+
+Item.EnableItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Item:EnableItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:91)
+Item:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Item.cs:44)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+Player.UseItem
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Player:UseItem() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:61)
+Player:Update() (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\Player.cs:54)
+ 
+(Filename: D Line: 0)
+
+OnTrigger Enter: finishLine1
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+FinishLineListener:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\FinishLineListener.cs:17)
+ 
+(Filename: D Line: 0)
+
+OnTrigger Enter: finishLine1
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+FinishLineListener:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\FinishLineListener.cs:17)
+ 
+(Filename: D Line: 0)
+
+OnTrigger Enter: finishLine2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+FinishLineListener:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\FinishLineListener.cs:17)
+ 
+(Filename: D Line: 0)
+
+OnTrigger Enter: finishLine0
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+FinishLineListener:OnTriggerEnter(Collider) (at D:\Soi Fon\Unity3D\06 Mario Cart VR\Assets\Scripts\FinishLineListener.cs:17)
+ 
+(Filename: D Line: 0)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 745)
+
+Waiting for finish
