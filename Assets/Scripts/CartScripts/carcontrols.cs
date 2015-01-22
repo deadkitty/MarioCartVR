@@ -28,7 +28,7 @@ public class carcontrols : MonoBehaviour
 
 	void Update () 
 	{
-		//Debug.Log("Speed:" + m_currentSpeed + "RPM:" + frontleftwheel.rpm);
+		Debug.Log("Speed:" + m_currentSpeed + "RPM:" + frontleftwheel.rpm);
 		m_wheelrpm = frontleftwheel.rpm;
 
 
