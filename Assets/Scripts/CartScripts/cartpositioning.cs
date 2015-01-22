@@ -14,6 +14,8 @@ public class cartpositioning : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+        Debug.Log("CartPositioning.Update");
+
 		CartModel.AddForce (Vector3.down * 30000);
 		//CartModel.AddForce (Vector3.back * 100);// DownForce for prevent the hard y rotation by went left or right
 	}

@@ -23,6 +23,8 @@ public class speedup : MonoBehaviour {
 
 	void OnTriggerEnter(Collider ItemMesh)
 	{
+        Debug.Log("Speedup.OnTriggerEnter");
+
 		while(speedupstate == 0)
 		{
 			speedupstate = 1;
