@@ -16,7 +16,8 @@ public class carcontrols : MonoBehaviour
 	WheelCollider frontrightwheel;
 	WheelCollider backleftwheel;
 	WheelCollider backrightwheel;
-	
+
+	float m_joystickX = 0; // Check Joystick Left Thumb angular left or right
 	
 	void Start () 
 	{
@@ -31,6 +32,7 @@ public class carcontrols : MonoBehaviour
 		Debug.Log("Speed:" + m_currentSpeed + "RPM:" + frontleftwheel.rpm);
 		m_wheelrpm = frontleftwheel.rpm;
 
+		Debug.Log (m_joystickX = Input.GetAxis("Horizontal"));
 
 		if(Input.GetKey("up"))
 		{
@@ -49,7 +51,7 @@ public class carcontrols : MonoBehaviour
 		}
 		if(Input.GetKey("down"))
 		{
-			if(m_wheelrpm < -100.0f)
+			if(m_wheelrpm < -400.0f)
 			{
 				m_currentSpeed = 0.0f;
 			}
@@ -87,6 +89,61 @@ public class carcontrols : MonoBehaviour
 		{
 			Application.Quit();
 		}
+
+		// XBOX360 Support
+
+		if(Input.GetButton("XBOX_A"))
+		{
+			if(m_wheelrpm > 400.0f)
+			{
+				m_currentSpeed = 0.0f;
+			}
+			else
+			{
+				m_currentSpeed += 1.0f;
+			}
+		}
+		if(Input.GetButtonUp("XBOX_A"))
+		{
+			m_currentSpeed = 0.0f;
+		}
+		if(Input.GetButton("XBOX_B"))
+		{
+			if(m_wheelrpm < -100.0f)
+			{
+				m_currentSpeed = 0.0f;
+			}
+			else
+			{
+				m_currentSpeed -= 1.0f;
+			}
+		}
+		if(Input.GetButtonUp("XBOX_B"))
+		{
+			m_currentSpeed = 0.0f;
+		}
+		if(m_joystickX < 0 && m_wheelangular > -20.0f)
+		{
+			m_wheelangular -= m_joystickX*-1/4.0f;
+		}
+		if(m_joystickX == 0)
+		{
+			m_wheelangular = 0.0f;
+		}
+		if(m_joystickX > 0 && m_wheelangular < 20.0f)
+		{
+			m_wheelangular += m_joystickX/4.0f;
+		}
+		if(m_joystickX == 0)
+		{
+			m_wheelangular = 0.0f;
+		}
+		if(Input.GetButtonUp("XBOX_Start"))
+		{
+			Application.LoadLevel(0);
+		}
+
+
 
 		frontleftwheel.motorTorque 	= m_currentSpeed;
 		frontrightwheel.motorTorque = m_currentSpeed;
