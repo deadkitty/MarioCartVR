@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 Base path: D:/Programme/Unity3D/Editor/Data
 Pipe name: \\.\pipe\UnityShaderCompiler-1-5748
+=======
+Base path: H:/Unity/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-1-7872
+>>>>>>> origin/InsertedCart
 Cmd: getPlatforms
