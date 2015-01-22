@@ -12,7 +12,7 @@ public class CartTimer : MonoBehaviour
 
     //private static int playerIndex = 0;
 
-    public Player player;
+    public CartTest player;
 
     private static bool beginRace = false;
 

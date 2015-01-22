@@ -47,13 +47,19 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CartScripts\carcontrols.cs" />
+<<<<<<< HEAD
+     <Compile Include="Assets\Scripts\CartScripts\motor.cs" />
+     <Compile Include="Assets\Scripts\CartTest.cs" />
+=======
      <Compile Include="Assets\Scripts\CartScripts\cartpositioning.cs" />
      <Compile Include="Assets\Scripts\CartScripts\motor.cs" />
      <Compile Include="Assets\Scripts\CartScripts\speedup.cs" />
+>>>>>>> origin/InsertedCart
      <Compile Include="Assets\Scripts\CartTimer.cs" />
      <Compile Include="Assets\Scripts\FinishLineListener.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\LapCounter.cs" />
+     <Compile Include="Assets\Scripts\MotorSound.cs" />
      <Compile Include="Assets\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\RotateCamera.cs" />

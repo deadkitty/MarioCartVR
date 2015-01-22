@@ -23,36 +23,36 @@ public class Player : MonoBehaviour
     void Start()
     {
         Debug.Log("Player.Start");
-        if(networkView.isMine)
-        {
-            CartTimer.sInstance.player = this;
-            NetworkManager.sInstance.players[0] = gameObject;
-        }
-        else
-        {
-            NetworkManager.sInstance.players[1] = gameObject;
-        }
+        //if(networkView.isMine)
+        //{
+        //    CartTimer.sInstance.player = this;
+        //    NetworkManager.sInstance.players[0] = gameObject;
+        //}
+        //else
+        //{
+        //    NetworkManager.sInstance.players[1] = gameObject;
+        //}
     }
 
     void Update()
     {
         if(networkView.isMine && beginRace)
         {
-            float speedMultiplier = Input.GetAxis("Vertical");
-            position.z = speedMultiplier * speed;
+            //float speedMultiplier = Input.GetAxis("Vertical");
+            //position.z = speedMultiplier * speed;
 
-            float rotation = transform.localEulerAngles.y + Input.GetAxis("Horizontal") * rotationSpeed * speedMultiplier * Time.deltaTime;
+            //float rotation = transform.localEulerAngles.y + Input.GetAxis("Horizontal") * rotationSpeed * speedMultiplier * Time.deltaTime;
 
-            transform.localEulerAngles = new Vector3(0.0f, rotation, 0.0f);
+            //transform.localEulerAngles = new Vector3(0.0f, rotation, 0.0f);
 
-            transform.Translate(position * Time.deltaTime);
+            //transform.Translate(position * Time.deltaTime);
 
-            rigidbody.AddForce(new Vector3(0.0f, Time.deltaTime * rigidbody.mass, 0.0f));
+            //rigidbody.AddForce(new Vector3(0.0f, Time.deltaTime * rigidbody.mass, 0.0f));
 
-            if(Input.GetButton("Fire1"))
-            {
-                UseItem();
-            }
+            //if (Input.GetButton("Fire1"))
+            //{
+            //    UseItem();
+            //}
         }
     }
 
