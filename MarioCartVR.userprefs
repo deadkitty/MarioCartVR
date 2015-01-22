@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CartScripts\speedup.cs">
+    <Files>
+      <File FileName="Assets\Scripts\CartScripts\speedup.cs" Line="11" Column="32" />
+      <File FileName="Assets\Scripts\CartScripts\carcontrols.cs" Line="58" Column="28" />
+      <File FileName="Assets\Scripts\CartScripts\cartpositioning.cs" Line="17" Column="39" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
