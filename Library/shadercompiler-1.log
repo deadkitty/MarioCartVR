@@ -1,10 +1,3 @@
-<<<<<<< HEAD
 Base path: H:/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-1-8648
-=======
-Base path: D:/Programme/Unity3D/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-1-4276
->>>>>>> origin/InsertedCart
+Pipe name: \\.\pipe\UnityShaderCompiler-1-5384
 Cmd: getPlatforms
-Cmd: preprocess
-  insize=2965 outsize=1659 ok=1
