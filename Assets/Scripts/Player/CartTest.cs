@@ -5,6 +5,9 @@ public class CartTest : MonoBehaviour
 {
     #region Fields
 
+	TextMesh SpeedGUI;
+	float m_wheelrpm = 0f;
+
     public float wheelRadius = 0.7500042f;
     public float suspensionRange = 0.1f;
     public float suspensionDamper = 50.0f;
@@ -79,6 +82,10 @@ public class CartTest : MonoBehaviour
 
     void Start()
     {
+		// For Change the Holo Speed GUI in Game
+		//SpeedGUI = GameObject.Find ("HoloGUI").GetComponent<TextMesh> ();
+		SpeedGUI = GetComponentInChildren<TextMesh> ();
+
         if (networkView.isMine)
         {
             CartTimer.sInstance.player = this;
@@ -339,12 +346,15 @@ public class CartTest : MonoBehaviour
     void UpdateWheelGraphics(Vector3 relativeVelocity)
     {
         float wheelCount = -1;
+		m_wheelrpm = 0;
 
-        foreach (Wheel w in wheels)
+	    foreach (Wheel w in wheels)
         {
             wheelCount++;
             WheelCollider wheel = w.collider;
             WheelHit wh = new WheelHit();
+
+			m_wheelrpm += Mathf.Round(wheel.rpm) / 10;
 
             // First we get the velocity at the point where the wheel meets the ground, if the wheel is touching the ground
             if (wheel.GetGroundHit(out wh))
@@ -380,6 +390,10 @@ public class CartTest : MonoBehaviour
                 w.tireGraphic.Rotate(Vector3.right * (w.groundSpeed.z / wheelRadius) * Time.deltaTime * Mathf.Rad2Deg);
             }
         }
+		m_wheelrpm /= wheels.Length;
+
+		SpeedGUI.text = m_wheelrpm.ToString() + " KM/h";
+
     }
 
     void UpdateGear(Vector3 relativeVelocity)
