@@ -56,11 +56,11 @@ public class LapCounter : MonoBehaviour
     {
         if(networkView.isMine)
         {
-            finishedString = "You Won the Race!!!";
+            finishedString = "You Lost the Race!!!";
         }
         else
         {
-            finishedString = "You Lost the Race!!!";
+            finishedString = "You Won the Race!!!";
         }
 
         raceFinished = true;
