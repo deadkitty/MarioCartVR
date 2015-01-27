@@ -93,6 +93,7 @@ public class MainMenu : MonoBehaviour
         if (GUI.Button(new Rect(25, 180, 150, 30), "abbrechen"))
         {
             currentPage = EPage.startMenu;
+            networkManager.StopServer();
         }
     }
 

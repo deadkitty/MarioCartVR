@@ -5,11 +5,11 @@ public class Item : MonoBehaviour
 {
     public enum EItemType
     {
-        mushroom = 0,   //cart acceleration
-        shield = 1,     //evade fire from another cart
-        turtle = 2,     //fire on another cart
-        count = 3,
-        undefined = -1,
+        mushroom =  0, //cart acceleration
+        shield   =  1, //evade fire from another cart
+        turtle   =  2, //fire on another cart
+        count    =  3,
+        none     = -1,
     }
 
     public float respawnTime = 15.0f;
@@ -48,16 +48,16 @@ public class Item : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        EItemType item = (EItemType)Random.Range(0, (int)EItemType.count); 
-        
-        switch(item)
+        EItemType item = (EItemType)Random.Range(0, (int)EItemType.count);
+
+#if UNITY_EDITOR
+
+        switch (item)
         {
             case EItemType.mushroom : Debug.Log("mushroom"); break;
             case EItemType.shield   : Debug.Log("shield"); break;
             case EItemType.turtle   : Debug.Log("turtle"); break;
         }
-
-#if UNITY_EDITOR
 
         if (useDebugItem)
         {
@@ -66,13 +66,14 @@ public class Item : MonoBehaviour
 
 #endif
 
-        Player player = collider.gameObject.GetComponent<Player>();
+        ItemController player = collider.gameObject.GetComponent<ItemController>();
 
-        if(player.currentItem == EItemType.undefined)
-        {
-            player.currentItem = item;
-            networkView.RPC("DisableItem", RPCMode.AllBuffered);
-        }
+        player.currentItem = item;
+        networkView.RPC("DisableItem", RPCMode.AllBuffered);
+        //if(player.currentItem == EItemType.none)
+        //{
+
+        //}
     }
 
     [RPC]

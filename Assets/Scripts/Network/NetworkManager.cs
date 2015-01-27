@@ -54,6 +54,12 @@ public class NetworkManager : MonoBehaviour
         MasterServer.RegisterHost(typeName, gameName);
     }
 
+    public void StopServer()
+    {
+        Network.Disconnect();
+        MasterServer.UnregisterHost();
+    }
+
     public void RefreshHostList()
     {
         MasterServer.RequestHostList(typeName);
@@ -97,7 +103,7 @@ public class NetworkManager : MonoBehaviour
     {
         SpawnPlayer();
 
-        CartTimer.StartRace();
+        CartTimer.StartRaceTimer();
 
         MainMenu.HideMenu();
     }

@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CartTest : MonoBehaviour
+public class CartMovement : MonoBehaviour
 {
     #region Fields
 
-	TextMesh SpeedGUI;
-	float m_wheelrpm = 0f;
+	private TextMesh SpeedGUI;
+	private float m_wheelrpm = 0f;
+
+    private Transform lastCheckpoint;
 
     public float wheelRadius = 0.7500042f;
     public float suspensionRange = 0.1f;
@@ -54,14 +56,6 @@ public class CartTest : MonoBehaviour
     private bool canSteer;
     private bool canDrive;
 
-    public bool beginRace = false;
-
-    public bool BeginRace
-    {
-        set { beginRace = value; }
-        get { return beginRace; }
-    }
-
     public class Wheel
     {
         public WheelCollider collider;
@@ -78,17 +72,15 @@ public class CartTest : MonoBehaviour
     
     #endregion
 
-    #region Start/Update/FixedUpdate
+    #region Functions Called By Unity
 
     void Start()
     {
 		// For Change the Holo Speed GUI in Game
-		//SpeedGUI = GameObject.Find ("HoloGUI").GetComponent<TextMesh> ();
 		SpeedGUI = GetComponentInChildren<TextMesh> ();
 
         if (networkView.isMine)
         {
-            CartTimer.sInstance.player = this;
             NetworkManager.sInstance.players[0] = gameObject;
 
             //Setup Camera
@@ -116,7 +108,7 @@ public class CartTest : MonoBehaviour
 
     void Update()
     {
-        if (networkView.isMine && beginRace)
+        if (networkView.isMine && CartTimer.BeginRace)
         {
             Vector3 relativeVelocity = transform.InverseTransformDirection(rigidbody.velocity);
 
@@ -148,6 +140,14 @@ public class CartTest : MonoBehaviour
         ApplySteering(canSteer, relativeVelocity);
     }
     
+    void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.name == "Checkpoint")
+        {
+            lastCheckpoint = collider.transform;
+        }
+    }
+
     #endregion
 
     #region Functions called from Start()
@@ -284,6 +284,11 @@ public class CartTest : MonoBehaviour
             brakeLights.SetFloat("_Intensity", 0.0f);
         }
 
+        if(Input.GetButton("XBOX_B"))
+        {
+            ResetCar();
+        }
+
         CheckHandbrake();
     }
 
@@ -330,13 +335,15 @@ public class CartTest : MonoBehaviour
             resetTimer = 0;
 
         if (resetTimer > resetTime)
-            FlipCar();
+            ResetCar();
     }
 
-    void FlipCar()
+    void ResetCar()
     {
-        transform.rotation = Quaternion.LookRotation(transform.forward);
-        transform.position += Vector3.up * 0.5f;
+        transform.position = lastCheckpoint.position;
+        transform.rotation = Quaternion.LookRotation(lastCheckpoint.forward);
+        //transform.rotation = Quaternion.LookRotation(transform.forward);
+        //transform.position += Vector3.up * 0.5f;
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;
         resetTimer = 0;

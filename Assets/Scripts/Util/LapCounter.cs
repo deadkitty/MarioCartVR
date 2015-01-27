@@ -25,42 +25,46 @@ public class LapCounter : MonoBehaviour
 
     }
 
-    public void TriggerEntered(FinishLineListener listener)
+    public void TriggerEntered(FinishLineListener listener, GameObject player)
     {
-        if (finishLines[lineIndex].lineNumber != listener.lineNumber)
+        if(player.networkView.isMine)
         {
-            ++lineIndex;
-            lineIndex %= finishLines.Length;
-            finishLines[lineIndex] = listener;
-        }
-
-        if (finishLines[(lineIndex + 1) % finishLines.Length].lineNumber == 0 &&
-            finishLines[(lineIndex + 2) % finishLines.Length].lineNumber == 1 &&
-            finishLines[(lineIndex + 3) % finishLines.Length].lineNumber == 2)
-        {
-            ++lap;
-            for (int i = 0; i < finishLines.Length; ++i)
+            if (finishLines[lineIndex].lineNumber != listener.lineNumber)
             {
-                finishLines[i] = finishLines[0];
+                ++lineIndex;
+                lineIndex %= finishLines.Length;
+                finishLines[lineIndex] = listener;
             }
 
-            if(lap == maxLaps)
+            if (finishLines[(lineIndex + 1) % finishLines.Length].lineNumber == 0 &&
+                finishLines[(lineIndex + 2) % finishLines.Length].lineNumber == 1 &&
+                finishLines[(lineIndex + 3) % finishLines.Length].lineNumber == 2)
             {
-                networkView.RPC("RaceFinished", RPCMode.AllBuffered, null);
+                ++lap;
+                for (int i = 0; i < finishLines.Length; ++i)
+                {
+                    finishLines[i] = finishLines[0];
+                }
+
+                if (lap == maxLaps && !raceFinished)
+                {
+                    RaceFinished(true);
+                    networkView.RPC("RaceFinished", RPCMode.OthersBuffered, false);
+                }
             }
         }
     }
 
     [RPC]
-    void RaceFinished()
+    void RaceFinished(bool wonRace)
     {
-        if(networkView.isMine)
+        if (wonRace)
         {
-            finishedString = "You Lost the Race!!!";
+            finishedString = "You Won the Race!!!";
         }
         else
         {
-            finishedString = "You Won the Race!!!";
+            finishedString = "You Lost the Race!!!";
         }
 
         raceFinished = true;

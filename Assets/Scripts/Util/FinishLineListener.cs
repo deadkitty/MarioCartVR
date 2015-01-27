@@ -16,6 +16,6 @@ public class FinishLineListener : MonoBehaviour
     {
         Debug.Log("OnTrigger Enter: " + gameObject.name);
 
-        lapCounter.TriggerEntered(this);
+        lapCounter.TriggerEntered(this, other.gameObject);
     }
 }
