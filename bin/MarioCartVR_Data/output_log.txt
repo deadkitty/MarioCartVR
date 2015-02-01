@@ -1,0 +1,94 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 7800 Series (ID=0x6818)
+    Vendor:   ATI
+    VRAM:     2030 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.105 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+Platform assembly: D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\System.Core.dll (this message is harmless)
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+The referenced script on this Behaviour is missing!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Mono/MonoBehaviour.cpp Line: 1788)
+
+Hostlist Received
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnMasterServerEvent(MasterServerEvent) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:68)
+ 
+(Filename: D Line: 0)
+
+Client: Spawn Player
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:SpawnPlayer() (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:115)
+NetworkManager:StartRace() (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:98)
+ 
+(Filename: D Line: 0)
+
+TurtleCollision Untagged
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:90)
+ 
+(Filename: D Line: 0)
+
+TurtleCollision Player
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:90)
+ 
+(Filename: D Line: 0)
+
+HitPlayer
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+CartMovement:HitPlayer(Single, Single, Single) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Player\CartMovement.cs:153)
+UnityEngine.NetworkView:Internal_RPC(NetworkView, String, RPCMode, Object[])
+UnityEngine.NetworkView:RPC(String, RPCMode, Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:408)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:94)
+ 
+(Filename: D Line: 0)
+
+TurtleCollision Untagged
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:90)
+ 
+(Filename: D Line: 0)
+
+TurtleCollision Untagged
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:90)
+ 
+(Filename: D Line: 0)
+
+TurtleCollision Untagged
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:90)
+ 
+(Filename: D Line: 0)
+
+HitPlayer
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+CartMovement:HitPlayer(Single, Single, Single) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Player\CartMovement.cs:153)
+ 
+(Filename: D Line: 0)
+
+Waiting for finish

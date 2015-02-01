@@ -4,12 +4,8 @@ using System.Collections;
 public class CartMovement : MonoBehaviour
 {
     #region Fields
-
-	private TextMesh SpeedGUI;
-	private float m_wheelrpm = 0f;
-
-    private Transform lastCheckpoint;
-
+    
+    //drive behavior
     public float wheelRadius = 0.7500042f;
     public float suspensionRange = 0.1f;
     public float suspensionDamper = 50.0f;
@@ -39,9 +35,6 @@ public class CartMovement : MonoBehaviour
     public int maximumTurn = 15;
     public int minimumTurn = 10;
 
-    public float resetTime = 5.0f;
-    private float resetTimer = 0.0f;
-
     private float[] engineForceValues;
     private float[] gearSpeeds;
 
@@ -55,6 +48,21 @@ public class CartMovement : MonoBehaviour
 
     private bool canSteer;
     private bool canDrive;
+
+    //reset car
+    private Transform lastCheckpoint;
+
+    public float resetTime = 5.0f;
+    private float resetTimer = 0.0f;
+
+    public bool canReset = true;
+
+    //GUI
+    private TextMesh SpeedGUI;
+    private float m_wheelrpm = 0f;
+
+    //others
+    public ItemController itemController;
 
     public class Wheel
     {
@@ -76,23 +84,12 @@ public class CartMovement : MonoBehaviour
 
     void Start()
     {
-		// For Change the Holo Speed GUI in Game
-		SpeedGUI = GetComponentInChildren<TextMesh> ();
+        // For Change the Holo Speed GUI in Game
+        SpeedGUI = GetComponentInChildren<TextMesh>();
 
-        if (networkView.isMine)
+        if(networkView.isMine)
         {
-            NetworkManager.sInstance.players[0] = gameObject;
-
-            //Setup Camera
-            GameObject camera = GameObject.Find("Camera");
-            Transform cameraPosition = transform.FindChild("CameraPosition");
-            camera.transform.position = cameraPosition.position;
-            camera.transform.rotation = cameraPosition.rotation;
-            camera.transform.parent = gameObject.transform;
-        }
-        else
-        {
-            NetworkManager.sInstance.players[1] = gameObject;
+            SetupCamera();
         }
 
         SetupWheelColliders();
@@ -104,6 +101,8 @@ public class CartMovement : MonoBehaviour
         SetupGears();
 
         initialDragMultiplierX = dragMultiplier.x;
+
+        itemController = GetComponent<ItemController>();
     }
 
     void Update()
@@ -114,8 +113,8 @@ public class CartMovement : MonoBehaviour
 
             GetInput();
 
-            Check_If_Car_Is_Flipped();
-
+            CheckResetTimer();
+            
             UpdateWheelGraphics(relativeVelocity);
 
             UpdateGear(relativeVelocity);
@@ -148,9 +147,31 @@ public class CartMovement : MonoBehaviour
         }
     }
 
+    [RPC]
+    void HitPlayer(float xForce, float yForce, float zForce)
+    {
+        Debug.Log("HitPlayer");
+
+        if (networkView.isMine && !itemController.shieldEnabled)
+        {
+            rigidbody.AddForce((xForce - rigidbody.velocity.x) * 1000.0f, yForce * 1000.0f, (zForce - rigidbody.velocity.z) * 1000.0f);
+
+            canReset = false;
+        }
+    }
+
     #endregion
 
     #region Functions called from Start()
+
+    void SetupCamera()
+    {
+        GameObject camera         = GameObject.Find("Camera");
+        Transform cameraPosition  = transform.FindChild("CameraPosition");
+        camera.transform.position = cameraPosition.position;
+        camera.transform.rotation = cameraPosition.rotation;
+        camera.transform.parent   = gameObject.transform;
+    }
 
     void SetupWheelColliders()
     {
@@ -272,19 +293,30 @@ public class CartMovement : MonoBehaviour
 
     void GetInput()
     {
-        throttle = Input.GetAxis("Vertical");
+        throttle = 0.0f;
+
+        if(Input.GetButton("Gas"))
+        {
+            throttle = 1.0f;
+        }
+        
+        if (Input.GetButton("Break"))
+        {
+            throttle = -1.0f;
+        }
+
         steer = Input.GetAxis("Horizontal");
 
         if (throttle < 0.0)
         {
-            brakeLights.SetFloat("_Intensity", Mathf.Abs(throttle));
+            brakeLights.SetFloat("_Intensity", -throttle);
         }
         else
         {
             brakeLights.SetFloat("_Intensity", 0.0f);
         }
 
-        if(Input.GetButton("XBOX_B"))
+        if (Input.GetButton("ResetCar"))
         {
             ResetCar();
         }
@@ -294,7 +326,7 @@ public class CartMovement : MonoBehaviour
 
     void CheckHandbrake()
     {
-        if (Input.GetKey("space"))
+        if (Input.GetKey("space") || Input.GetButton("Handbrake"))
         {
             if (!handbrake)
             {
@@ -320,34 +352,41 @@ public class CartMovement : MonoBehaviour
         {
             dragMultiplier.x += diff * (Time.deltaTime / seconds);
             handbrakeTimer -= Time.deltaTime / seconds;
-            //yield;
         }
 
         dragMultiplier.x = initialDragMultiplierX;
         handbrakeTimer = 0;
     }
 
-    void Check_If_Car_Is_Flipped()
+    void CheckResetTimer()
     {
-        if (transform.localEulerAngles.z > 80 && transform.localEulerAngles.z < 280)
+        if(!canReset)
+        {
             resetTimer += Time.deltaTime;
+        }
         else
+        {
             resetTimer = 0;
+        }
 
-        if (resetTimer > resetTime)
+        if (resetTimer > resetTime && !canReset)
+        {
+            canReset = true;
             ResetCar();
+        }
     }
 
     void ResetCar()
     {
-        transform.position = lastCheckpoint.position;
-        transform.rotation = Quaternion.LookRotation(lastCheckpoint.forward);
-        //transform.rotation = Quaternion.LookRotation(transform.forward);
-        //transform.position += Vector3.up * 0.5f;
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.angularVelocity = Vector3.zero;
-        resetTimer = 0;
-        currentEnginePower = 0;
+        if(canReset)
+        {
+            transform.position = lastCheckpoint.position;
+            transform.rotation = Quaternion.LookRotation(lastCheckpoint.forward);
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+            resetTimer = 0;
+            currentEnginePower = 0;
+        }
     }
 
     void UpdateWheelGraphics(Vector3 relativeVelocity)

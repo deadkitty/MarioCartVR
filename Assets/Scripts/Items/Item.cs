@@ -48,39 +48,36 @@ public class Item : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        EItemType item = (EItemType)Random.Range(0, (int)EItemType.count);
+        if(collider.tag == "Player")
+        {
+            EItemType item = (EItemType)Random.Range(0, (int)EItemType.count);
 
 #if UNITY_EDITOR
 
-        switch (item)
-        {
-            case EItemType.mushroom : Debug.Log("mushroom"); break;
-            case EItemType.shield   : Debug.Log("shield"); break;
-            case EItemType.turtle   : Debug.Log("turtle"); break;
-        }
+            switch (item)
+            {
+                case EItemType.mushroom: Debug.Log("mushroom"); break;
+                case EItemType.shield: Debug.Log("shield"); break;
+                case EItemType.turtle: Debug.Log("turtle"); break;
+            }
 
-        if (useDebugItem)
-        {
-            item = debugItem;
-        }
+            if (useDebugItem)
+            {
+                item = debugItem;
+            }
 
 #endif
 
-        ItemController player = collider.gameObject.GetComponent<ItemController>();
+            ItemController player = collider.gameObject.GetComponent<ItemController>();
 
-        player.currentItem = item;
-        networkView.RPC("DisableItem", RPCMode.AllBuffered);
-        //if(player.currentItem == EItemType.none)
-        //{
-
-        //}
+            player.currentItem = item;
+            networkView.RPC("DisableItem", RPCMode.AllBuffered);
+        }
     }
 
     [RPC]
     void DisableItem()
     {
-        Debug.Log("RPC.Item.DisableItem");
-
         disabled = true;
 
         meshRenderer.enabled = false;
@@ -89,8 +86,6 @@ public class Item : MonoBehaviour
 
     void EnableItem()
     {
-        Debug.Log("Item.EnableItem");
-
         disabled = false;
 
         meshRenderer.enabled = true;

@@ -3,30 +3,44 @@ using System.Collections;
 
 public class ItemController : MonoBehaviour
 {
-    public GameObject turtle;
+    public GameObject turtleGameObject;
+    public GameObject shieldGameObject;
 
     public Item.EItemType currentItem = Item.EItemType.none;
 
+    public bool shieldEnabled = false;
+    public float shieldResetTime = 10.0f;
+    public float shieldResetTimer = 0.0f;
+
     void Start()
     {
+        if(networkView.isMine)
+        {
+            Players.SetPlayer(0, gameObject);
+        }
+        else
+        {
+            Players.SetPlayer(1, gameObject);
+        }
 
+        shieldGameObject = transform.FindChild("Shield").gameObject;
     }
 
     void Update()
     {
         if(networkView.isMine && CartTimer.BeginRace)
         {
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButtonDown("UseItem"))
             {
                 UseItem();
             }
         }
+
+        ResetShieldTimer();
     }
 
     void UseItem()
     {
-        Debug.Log("Player.UseItem");
-
         switch(currentItem)
         {
             case Item.EItemType.mushroom: UseMushroom(); break;
@@ -39,25 +53,39 @@ public class ItemController : MonoBehaviour
 
     void UseMushroom()
     {
-
+        
     }
 
     void UseShield()
     {
+        networkView.RPC("UseShieldRPC", RPCMode.AllBuffered);
+    }
 
+    [RPC]
+    void UseShieldRPC()
+    {
+        shieldEnabled = true;
+        shieldGameObject.renderer.enabled = true;
+    }
+
+    void ResetShieldTimer()
+    {
+        if(shieldEnabled)
+        {
+            shieldResetTimer += Time.deltaTime;
+        }
+
+        if(shieldResetTimer >= shieldResetTime)
+        {
+            shieldEnabled = false;
+            shieldResetTimer = 0.0f;
+            shieldGameObject.renderer.enabled = false;
+        }
     }
 
     void UseTurtle()
     {
-        Vector3 turtlePosition = transform.position;
-        
-        Network.Instantiate(turtle, turtlePosition + new Vector3(0.0f, 5.0f, 0.0f), Quaternion.identity, 0);
-
-        Turtle turtleScript = turtle.GetComponent<Turtle>();
-        
-        if(Network.isClient)
-        {
-
-        }
+        Vector3 turtlePosition = transform.FindChild("ItemSpawn").position;
+        Network.Instantiate(turtleGameObject, turtlePosition, transform.rotation, 0);
     }
 }

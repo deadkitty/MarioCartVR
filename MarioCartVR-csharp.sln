@@ -5,6 +5,8 @@ Project("{E212E26B-061A-6BDE-C757-835EACA3C719}") = "MarioCartVR", "Assembly-CSh
 EndProject
 Project("{E212E26B-061A-6BDE-C757-835EACA3C719}") = "MarioCartVR", "Assembly-CSharp-vs.csproj", "{3E802C0B-6584-1D83-91DA-97BC062A8782}"
 EndProject
+Project("{E212E26B-061A-6BDE-C757-835EACA3C719}") = "MarioCartVR", "Assembly-CSharp-Editor-vs.csproj", "{7777BC14-9652-4D23-0AAB-8650EB27B0E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,15 @@ Global
 		{3E802C0B-6584-1D83-91DA-97BC062A8782}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E802C0B-6584-1D83-91DA-97BC062A8782}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E802C0B-6584-1D83-91DA-97BC062A8782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7777BC14-9652-4D23-0AAB-8650EB27B0E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7777BC14-9652-4D23-0AAB-8650EB27B0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7777BC14-9652-4D23-0AAB-8650EB27B0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7777BC14-9652-4D23-0AAB-8650EB27B0E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																			GlobalSection(MonoDevelopProperties) = preSolution
+			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
