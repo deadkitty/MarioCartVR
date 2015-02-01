@@ -102,7 +102,7 @@ public class CartMovement : MonoBehaviour
 
         initialDragMultiplierX = dragMultiplier.x;
 
-        itemController = GetComponent<ItemController>();
+        //itemController = GetComponent<ItemController>();
     }
 
     void Update()
@@ -118,6 +118,8 @@ public class CartMovement : MonoBehaviour
             UpdateWheelGraphics(relativeVelocity);
 
             UpdateGear(relativeVelocity);
+
+            UseMushroom();
         }
     }
 
@@ -452,6 +454,18 @@ public class CartMovement : MonoBehaviour
         }
     }
     
+    void UseMushroom()
+    {
+        if(itemController.useMushroom)
+        {
+            constantForce.force = transform.forward * itemController.mushroomSpeed * 1000.0f;
+        }
+        else
+        {
+            constantForce.force = Vector3.zero;
+        }
+    }
+
     #endregion
     
     #region Functions called from FixedUpdate()

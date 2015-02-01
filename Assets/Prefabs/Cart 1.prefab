@@ -1234,6 +1234,7 @@ GameObject:
   - 54: {fileID: 5464032}
   - 65: {fileID: 6564032}
   - 148: {fileID: 14800000}
+  - 75: {fileID: 7581876}
   m_Layer: 8
   m_Name: Cart 1
   m_TagString: Player
@@ -3659,7 +3660,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: eadbac49a7923564aa1340075574c0cc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -4184,6 +4185,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 1.89999998, z: 5.9000001}
   m_Center: {x: 0, y: .300000012, z: .5}
+--- !u!75 &7581876
+ConstantForce:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100144}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
@@ -4246,13 +4258,13 @@ MonoBehaviour:
   rearWheels:
   - {fileID: 400134}
   - {fileID: 400132}
-  topSpeed: 160
+  topSpeed: 150
   numberOfGears: 5
   maximumTurn: 15
   minimumTurn: 10
   resetTime: 5
   canReset: 1
-  itemController: {fileID: 0}
+  itemController: {fileID: 11464032}
 --- !u!114 &11464032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4266,10 +4278,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turtleGameObject: {fileID: 104526, guid: fb153af522fa1cd4c871f454c93693de, type: 2}
   shieldGameObject: {fileID: 0}
-  currentItem: 2
+  currentItem: 0
   shieldEnabled: 0
   shieldResetTime: 10
-  shieldResetTimer: 0
+  useMushroom: 0
+  mushroomSpeed: 25
+  mushroomTime: 2
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

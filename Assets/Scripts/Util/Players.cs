@@ -12,6 +12,7 @@ public class Players : MonoBehaviour
     public static void SetPlayer(int index, GameObject player)
     {
         sInstance.player[index] = player;
+        sInstance.player[index].name = "Cart" + index;
     }
 
     public static GameObject GetPlayer(int index)

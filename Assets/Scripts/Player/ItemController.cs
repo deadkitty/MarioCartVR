@@ -8,9 +8,14 @@ public class ItemController : MonoBehaviour
 
     public Item.EItemType currentItem = Item.EItemType.none;
 
-    public bool shieldEnabled = false;
-    public float shieldResetTime = 10.0f;
-    public float shieldResetTimer = 0.0f;
+    public  bool shieldEnabled = false;
+    public  float shieldResetTime = 10.0f;
+    private float shieldResetTimer = 0.0f;
+
+    public  bool useMushroom;
+    public  float mushroomSpeed = 25.0f;
+    public  float mushroomTime  = 2.0f;
+    private float mushroomTimer = 0.0f;
 
     void Start()
     {
@@ -36,6 +41,7 @@ public class ItemController : MonoBehaviour
             }
         }
 
+        ResetMushroomTimer();
         ResetShieldTimer();
     }
 
@@ -53,7 +59,21 @@ public class ItemController : MonoBehaviour
 
     void UseMushroom()
     {
+        useMushroom = true;
+    }
+
+    void ResetMushroomTimer()
+    {
+        if(useMushroom)
+        {
+            mushroomTimer += Time.deltaTime;
+        }
         
+        if(mushroomTimer > mushroomTime)
+        {
+            useMushroom = false;
+            mushroomTimer = 0.0f;
+        }
     }
 
     void UseShield()
