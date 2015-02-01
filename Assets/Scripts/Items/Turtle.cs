@@ -13,6 +13,12 @@ public class Turtle : MonoBehaviour
 
     private int cartLayer;
 
+    public float yForce = 10000.0f;
+    public float sideForce = 200.0f;
+
+    private float xForce;
+    private float zForce;
+
 	void Start () 
     {
         cartLayer = LayerMask.NameToLayer("Cart");
@@ -28,17 +34,19 @@ public class Turtle : MonoBehaviour
             owner = Players.GetPlayer(1);
         }
 
+        xForce = Random.Range(-sideForce, sideForce);
+        zForce = Random.Range(-sideForce, sideForce);
+
         lastPosition = transform.position;
 	}
-
-    public float angle;
-
+    
 	void Update ()
     {
         if (networkView.isMine)
         {
             Vector3 lookDir;
             Vector3 enemyDir;
+            float angle;
 
             transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
 
@@ -52,18 +60,20 @@ public class Turtle : MonoBehaviour
 
             if (angle > 5.0f)
             {
+                //take a sample position right and left from the turtle shell
                 Vector3 posRight = transform.position + transform.right * 0.5f;
                 Vector3 posLeft  = transform.position - transform.right * 0.5f;
 
+                //get distance from these points to the otherplayers position
                 float distanceRight = Vector3.Distance(posRight, otherPlayer.transform.position);
                 float distanceLeft  = Vector3.Distance(posLeft , otherPlayer.transform.position);
 
-                //rotate right
+                //if rightDistance is lower than rotate turtleshell right
                 if (distanceRight < distanceLeft)
                 {
                     transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
                 }
-                else //rotate left
+                else //otherwise rotate left
                 {
                     transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
                 }
@@ -77,7 +87,7 @@ public class Turtle : MonoBehaviour
 
         if (collision.gameObject.layer == cartLayer && collision.gameObject != owner)
         {
-            collision.gameObject.networkView.RPC("HitPlayer", RPCMode.AllBuffered);
+            collision.gameObject.networkView.RPC("HitPlayer", RPCMode.AllBuffered, xForce, yForce, zForce);
             
             if (networkView.isMine)
             {
