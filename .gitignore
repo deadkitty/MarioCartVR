@@ -17,11 +17,15 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-#Unity Files/Folders
-temp/
-obj/
-Library/
+#Unity Folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]in/
+
+#Unity Files
 *.meta
+*
 
 # =========================
 # Operating System Files

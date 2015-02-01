@@ -3,20 +3,27 @@ using System.Collections;
 
 public class ItemController : MonoBehaviour
 {
-    public GameObject turtle;
+    public GameObject turtleGameObject;
 
     public Item.EItemType currentItem = Item.EItemType.none;
 
     void Start()
     {
-
+        if(networkView.isMine)
+        {
+            Players.SetPlayer(0, gameObject);
+        }
+        else
+        {
+            Players.SetPlayer(1, gameObject);
+        }
     }
 
     void Update()
     {
         if(networkView.isMine && CartTimer.BeginRace)
         {
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButtonDown("UseItem"))
             {
                 UseItem();
             }
@@ -25,8 +32,6 @@ public class ItemController : MonoBehaviour
 
     void UseItem()
     {
-        Debug.Log("Player.UseItem");
-
         switch(currentItem)
         {
             case Item.EItemType.mushroom: UseMushroom(); break;
@@ -44,20 +49,18 @@ public class ItemController : MonoBehaviour
 
     void UseShield()
     {
-
+        
     }
 
     void UseTurtle()
     {
-        Vector3 turtlePosition = transform.position;
-        
-        Network.Instantiate(turtle, turtlePosition + new Vector3(0.0f, 5.0f, 0.0f), Quaternion.identity, 0);
-
-        Turtle turtleScript = turtle.GetComponent<Turtle>();
-        
-        if(Network.isClient)
-        {
-
-        }
+        Vector3 turtlePosition = transform.FindChild("ItemSpawn").position;
+        Network.Instantiate(turtleGameObject, turtlePosition, transform.rotation, 0);
+    }
+    
+    [RPC]
+    void HitPlayer()
+    {
+        Debug.Log("HitPlayer");
     }
 }
