@@ -14,7 +14,7 @@ Platform assembly: D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\Mario Cart 
 Loading D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\Mario Cart VR_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\Mario Cart VR_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading D:\Soi Fon\Visual Studio\Projects\MarioCartVR\bin\Mario Cart VR_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.095 seconds
+- Completed reload, in  0.103 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
@@ -38,183 +38,32 @@ NetworkManager:StartRace() (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Ass
 TurtleCollision Untagged
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
- 
-(Filename: D Line: 0)
-
-TurtleCollision Untagged
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:76)
  
 (Filename: D Line: 0)
 
 TurtleCollision Player
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:86)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:76)
  
 (Filename: D Line: 0)
 
 HitPlayer
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-CartMovement:HitPlayer(Single, Single, Single) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Player\CartMovement.cs:148)
+ItemController:HitPlayer() (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Player\ItemController.cs:64)
 UnityEngine.NetworkView:Internal_RPC(NetworkView, String, RPCMode, Object[])
 UnityEngine.NetworkView:RPC(String, RPCMode, Object[]) (at C:\BuildAgent\work\d63dfc6385190b60\artifacts\StandalonePlayerGenerated\Networking.cs:408)
-Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:90)
+Turtle:OnCollisionEnter(Collision) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Items\Turtle.cs:80)
  
 (Filename: D Line: 0)
 
 HitPlayer
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-CartMovement:HitPlayer(Single, Single, Single) (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Player\CartMovement.cs:148)
+ItemController:HitPlayer() (at D:\Soi Fon\Visual Studio\Projects\MarioCartVR\Assets\Scripts\Player\ItemController.cs:64)
  
 (Filename: D Line: 0)
-
-The server has disconnected from the client. Most likely the server has shut down.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 745)
 
 Waiting for finish

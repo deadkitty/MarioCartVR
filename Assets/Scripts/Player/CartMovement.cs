@@ -55,8 +55,6 @@ public class CartMovement : MonoBehaviour
     public float resetTime = 5.0f;
     private float resetTimer = 0.0f;
 
-    public bool canReset = true;
-
     //GUI
     private TextMesh SpeedGUI;
     private float m_wheelrpm = 0f;
@@ -107,8 +105,8 @@ public class CartMovement : MonoBehaviour
             Vector3 relativeVelocity = transform.InverseTransformDirection(rigidbody.velocity);
 
             GetInput();
-            
-            CheckResetTimer();
+
+            CheckCarIsFlipped();
 
             UpdateWheelGraphics(relativeVelocity);
 
@@ -139,21 +137,6 @@ public class CartMovement : MonoBehaviour
         if(collider.gameObject.name == "Checkpoint")
         {
             lastCheckpoint = collider.transform;
-        }
-    }
-
-    [RPC]
-    void HitPlayer(float xForce, float yForce, float zForce)
-    {
-        Debug.Log("HitPlayer");
-
-        if (networkView.isMine)
-        {
-            Debug.Log("AddForce");
-
-            rigidbody.AddForce((xForce - rigidbody.velocity.x) * 1000.0f, yForce * 1000.0f, (zForce - rigidbody.velocity.z) * 1000.0f);
-
-            canReset = false;
         }
     }
 
@@ -349,41 +332,32 @@ public class CartMovement : MonoBehaviour
         {
             dragMultiplier.x += diff * (Time.deltaTime / seconds);
             handbrakeTimer -= Time.deltaTime / seconds;
+            //yield;
         }
 
         dragMultiplier.x = initialDragMultiplierX;
         handbrakeTimer = 0;
     }
 
-    void CheckResetTimer()
+    void CheckCarIsFlipped()
     {
-        if(!canReset)
-        {
+        if (transform.localEulerAngles.z > 80 && transform.localEulerAngles.z < 280)
             resetTimer += Time.deltaTime;
-        }
         else
-        {
             resetTimer = 0;
-        }
 
-        if (resetTimer > resetTime && !canReset)
-        {
-            canReset = true;
+        if (resetTimer > resetTime)
             ResetCar();
-        }
     }
 
     void ResetCar()
     {
-        if(canReset)
-        {
-            transform.position = lastCheckpoint.position;
-            transform.rotation = Quaternion.LookRotation(lastCheckpoint.forward);
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = Vector3.zero;
-            resetTimer = 0;
-            currentEnginePower = 0;
-        }
+        transform.position = lastCheckpoint.position;
+        transform.rotation = Quaternion.LookRotation(lastCheckpoint.forward);
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+        resetTimer = 0;
+        currentEnginePower = 0;
     }
 
     void UpdateWheelGraphics(Vector3 relativeVelocity)

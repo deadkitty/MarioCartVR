@@ -6,7 +6,7 @@ public class ItemController : MonoBehaviour
     public GameObject turtleGameObject;
 
     public Item.EItemType currentItem = Item.EItemType.none;
-    
+
     void Start()
     {
         if(networkView.isMine)
@@ -56,5 +56,11 @@ public class ItemController : MonoBehaviour
     {
         Vector3 turtlePosition = transform.FindChild("ItemSpawn").position;
         Network.Instantiate(turtleGameObject, turtlePosition, transform.rotation, 0);
+    }
+    
+    [RPC]
+    void HitPlayer()
+    {
+        Debug.Log("HitPlayer");
     }
 }
