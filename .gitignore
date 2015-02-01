@@ -17,12 +17,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-#Unity Folders
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]in/
-
 #Unity Files
 *.meta
 *
