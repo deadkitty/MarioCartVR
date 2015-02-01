@@ -1226,6 +1226,7 @@ GameObject:
   - 33: {fileID: 620329672}
   - 65: {fileID: 620329671}
   - 23: {fileID: 620329670}
+  - 114: {fileID: 620329674}
   m_Layer: 0
   m_Name: WaterCollider
   m_TagString: Untagged
@@ -1284,6 +1285,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881218679}
   m_RootOrder: 0
+--- !u!114 &620329674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 620329669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3a674204c6fe14a9fa9b0223d223fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &703321776
 GameObject:
   m_ObjectHideFlags: 0
@@ -3128,7 +3140,7 @@ Transform:
 --- !u!1 &1769383098
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100144, guid: 24ea2a5e22eabf249a45e3e1d86f3ad6, type: 2}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
@@ -3160,7 +3172,7 @@ MonoBehaviour:
 --- !u!4 &1769383100
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400144, guid: 24ea2a5e22eabf249a45e3e1d86f3ad6, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769383098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3172,7 +3184,8 @@ Transform:
 --- !u!148 &1769383101
 NetworkView:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 14800000, guid: 24ea2a5e22eabf249a45e3e1d86f3ad6,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769383098}
   m_Enabled: 1
