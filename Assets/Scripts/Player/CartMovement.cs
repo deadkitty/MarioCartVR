@@ -61,9 +61,6 @@ public class CartMovement : MonoBehaviour
     private TextMesh SpeedGUI;
     private float m_wheelrpm = 0f;
 
-    //others
-    public ItemController itemController;
-
     public class Wheel
     {
         public WheelCollider collider;
@@ -101,8 +98,6 @@ public class CartMovement : MonoBehaviour
         SetupGears();
 
         initialDragMultiplierX = dragMultiplier.x;
-
-        itemController = GetComponent<ItemController>();
     }
 
     void Update()
@@ -112,9 +107,9 @@ public class CartMovement : MonoBehaviour
             Vector3 relativeVelocity = transform.InverseTransformDirection(rigidbody.velocity);
 
             GetInput();
-
-            CheckResetTimer();
             
+            CheckResetTimer();
+
             UpdateWheelGraphics(relativeVelocity);
 
             UpdateGear(relativeVelocity);
@@ -152,8 +147,10 @@ public class CartMovement : MonoBehaviour
     {
         Debug.Log("HitPlayer");
 
-        if (networkView.isMine && !itemController.shieldEnabled)
+        if (networkView.isMine)
         {
+            Debug.Log("AddForce");
+
             rigidbody.AddForce((xForce - rigidbody.velocity.x) * 1000.0f, yForce * 1000.0f, (zForce - rigidbody.velocity.z) * 1000.0f);
 
             canReset = false;
