@@ -4,85 +4,69 @@ using System.Collections;
 public class Turtle : MonoBehaviour 
 {
     public GameObject otherPlayer;
-    public GameObject owner;
 
-    public float speed = 20.0f;
-    public float rotationSpeed = 5.0f;
-    
-    private Vector3 lastPosition;
+    public float distanceToPlayer = 5.0f;
+    public float currentTime = 0.0f;
 
-    private int cartLayer;
+    private float lastSynchronizationTime = 0f;
+    private float syncDelay = 0f;
+    private float syncTime = 0f;
+    private Vector3 syncStartPosition = Vector3.zero;
+    private Vector3 syncEndPosition = Vector3.zero;
 
 	void Start () 
     {
-        cartLayer = LayerMask.NameToLayer("Cart");
+        otherPlayer = NetworkManager.sInstance.players[1];
 
+        distanceToPlayer = Vector3.Distance(transform.position, otherPlayer.transform.position);
+	}
+	
+	void Update () 
+    {
         if(networkView.isMine)
         {
-            owner = Players.GetPlayer(0);
-            otherPlayer = Players.GetPlayer(1);
+            currentTime += Time.deltaTime;
+
+            transform.position = Vector3.Lerp(transform.position, otherPlayer.transform.position, currentTime / distanceToPlayer);
         }
         else
         {
-            otherPlayer = Players.GetPlayer(0);
-            owner = Players.GetPlayer(1);
-        }
 
-        lastPosition = transform.position;
+        }
 	}
 
-    public float angle;
-
-	void Update ()
+    void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
     {
-        if (networkView.isMine)
+        Vector3 syncPosition = Vector3.zero;
+        Vector3 syncVelocity = Vector3.zero;
+
+        if (stream.isWriting)
         {
-            Vector3 lookDir;
-            Vector3 enemyDir;
+            syncPosition = transform.position;
+            stream.Serialize(ref syncPosition);
 
-            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-
-            lookDir = transform.forward;
-            lookDir.y = 0.0f;
-            
-            enemyDir = otherPlayer.transform.position - transform.position;
-            enemyDir.y = 0.0f;
-
-            angle = Vector3.Angle(transform.forward, enemyDir);
-
-            if (angle > 5.0f)
-            {
-                Vector3 posRight = transform.position + transform.right * 0.5f;
-                Vector3 posLeft  = transform.position - transform.right * 0.5f;
-
-                float distanceRight = Vector3.Distance(posRight, otherPlayer.transform.position);
-                float distanceLeft  = Vector3.Distance(posLeft , otherPlayer.transform.position);
-
-                //rotate right
-                if (distanceRight < distanceLeft)
-                {
-                    transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-                }
-                else //rotate left
-                {
-                    transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
-                }
-            }
+            syncVelocity = rigidbody.velocity;
+            stream.Serialize(ref syncVelocity);
         }
-	}
+        else
+        {
+            stream.Serialize(ref syncPosition);
+            stream.Serialize(ref syncVelocity);
+
+            syncTime = 0f;
+            syncDelay = Time.time - lastSynchronizationTime;
+            lastSynchronizationTime = Time.time;
+
+            syncEndPosition = syncPosition + syncVelocity * syncDelay;
+            syncStartPosition = transform.position;
+        }
+    }
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("TurtleCollision " + collision.gameObject.tag);
-
-        if (collision.gameObject.layer == cartLayer && collision.gameObject != owner)
+        if(collision.gameObject == otherPlayer)
         {
-            collision.gameObject.networkView.RPC("HitPlayer", RPCMode.AllBuffered);
-            
-            if (networkView.isMine)
-            {
-                Network.Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 }

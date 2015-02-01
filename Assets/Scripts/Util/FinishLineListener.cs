@@ -14,9 +14,8 @@ public class FinishLineListener : MonoBehaviour
 	    
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
-        {
-            lapCounter.TriggerEntered(this, other.gameObject);
-        }
+        Debug.Log("OnTrigger Enter: " + gameObject.name);
+
+        lapCounter.TriggerEntered(this, other.gameObject);
     }
 }

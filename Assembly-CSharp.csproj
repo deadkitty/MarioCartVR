@@ -62,7 +62,6 @@
      <Compile Include="Assets\Scripts\Util\CartTimer.cs" />
      <Compile Include="Assets\Scripts\Util\FinishLineListener.cs" />
      <Compile Include="Assets\Scripts\Util\LapCounter.cs" />
-     <Compile Include="Assets\Scripts\Util\Players.cs" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Programme/Unity3D/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

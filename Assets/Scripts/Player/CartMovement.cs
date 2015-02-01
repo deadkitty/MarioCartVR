@@ -4,8 +4,12 @@ using System.Collections;
 public class CartMovement : MonoBehaviour
 {
     #region Fields
-    
-    //drive behavior
+
+	private TextMesh SpeedGUI;
+	private float m_wheelrpm = 0f;
+
+    private Transform lastCheckpoint;
+
     public float wheelRadius = 0.7500042f;
     public float suspensionRange = 0.1f;
     public float suspensionDamper = 50.0f;
@@ -35,6 +39,9 @@ public class CartMovement : MonoBehaviour
     public int maximumTurn = 15;
     public int minimumTurn = 10;
 
+    public float resetTime = 5.0f;
+    private float resetTimer = 0.0f;
+
     private float[] engineForceValues;
     private float[] gearSpeeds;
 
@@ -48,16 +55,6 @@ public class CartMovement : MonoBehaviour
 
     private bool canSteer;
     private bool canDrive;
-
-    //reset car
-    private Transform lastCheckpoint;
-
-    public float resetTime = 5.0f;
-    private float resetTimer = 0.0f;
-
-    //GUI
-    private TextMesh SpeedGUI;
-    private float m_wheelrpm = 0f;
 
     public class Wheel
     {
@@ -79,12 +76,23 @@ public class CartMovement : MonoBehaviour
 
     void Start()
     {
-        // For Change the Holo Speed GUI in Game
-        SpeedGUI = GetComponentInChildren<TextMesh>();
+		// For Change the Holo Speed GUI in Game
+		SpeedGUI = GetComponentInChildren<TextMesh> ();
 
-        if(networkView.isMine)
+        if (networkView.isMine)
         {
-            SetupCamera();
+            NetworkManager.sInstance.players[0] = gameObject;
+
+            //Setup Camera
+            GameObject camera = GameObject.Find("Camera");
+            Transform cameraPosition = transform.FindChild("CameraPosition");
+            camera.transform.position = cameraPosition.position;
+            camera.transform.rotation = cameraPosition.rotation;
+            camera.transform.parent = gameObject.transform;
+        }
+        else
+        {
+            NetworkManager.sInstance.players[1] = gameObject;
         }
 
         SetupWheelColliders();
@@ -106,7 +114,7 @@ public class CartMovement : MonoBehaviour
 
             GetInput();
 
-            CheckCarIsFlipped();
+            Check_If_Car_Is_Flipped();
 
             UpdateWheelGraphics(relativeVelocity);
 
@@ -143,15 +151,6 @@ public class CartMovement : MonoBehaviour
     #endregion
 
     #region Functions called from Start()
-
-    void SetupCamera()
-    {
-        GameObject camera         = GameObject.Find("Camera");
-        Transform cameraPosition  = transform.FindChild("CameraPosition");
-        camera.transform.position = cameraPosition.position;
-        camera.transform.rotation = cameraPosition.rotation;
-        camera.transform.parent   = gameObject.transform;
-    }
 
     void SetupWheelColliders()
     {
@@ -273,30 +272,19 @@ public class CartMovement : MonoBehaviour
 
     void GetInput()
     {
-        throttle = 0.0f;
-
-        if(Input.GetButton("Gas"))
-        {
-            throttle = 1.0f;
-        }
-        
-        if (Input.GetButton("Break"))
-        {
-            throttle = -1.0f;
-        }
-
+        throttle = Input.GetAxis("Vertical");
         steer = Input.GetAxis("Horizontal");
 
         if (throttle < 0.0)
         {
-            brakeLights.SetFloat("_Intensity", -throttle);
+            brakeLights.SetFloat("_Intensity", Mathf.Abs(throttle));
         }
         else
         {
             brakeLights.SetFloat("_Intensity", 0.0f);
         }
 
-        if (Input.GetButton("ResetCar"))
+        if(Input.GetButton("XBOX_B"))
         {
             ResetCar();
         }
@@ -306,7 +294,7 @@ public class CartMovement : MonoBehaviour
 
     void CheckHandbrake()
     {
-        if (Input.GetKey("space") || Input.GetButton("Handbrake"))
+        if (Input.GetKey("space"))
         {
             if (!handbrake)
             {
@@ -339,7 +327,7 @@ public class CartMovement : MonoBehaviour
         handbrakeTimer = 0;
     }
 
-    void CheckCarIsFlipped()
+    void Check_If_Car_Is_Flipped()
     {
         if (transform.localEulerAngles.z > 80 && transform.localEulerAngles.z < 280)
             resetTimer += Time.deltaTime;
@@ -354,6 +342,8 @@ public class CartMovement : MonoBehaviour
     {
         transform.position = lastCheckpoint.position;
         transform.rotation = Quaternion.LookRotation(lastCheckpoint.forward);
+        //transform.rotation = Quaternion.LookRotation(transform.forward);
+        //transform.position += Vector3.up * 0.5f;
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;
         resetTimer = 0;

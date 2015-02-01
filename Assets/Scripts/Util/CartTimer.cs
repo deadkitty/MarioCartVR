@@ -3,9 +3,15 @@ using System.Collections;
 
 public class CartTimer : MonoBehaviour
 {
-    private static float currentTime = 0.0f;
-    private static float timeTillRaceStarts = 0.0f;
-    private static float timeLastFrame = -1.0f;
+    private static float currentTime = -5.0f;
+    private static float timeTillRaceStarts = 5.0f;
+    private static float timeLastFrame = 0.0f;
+
+    //private static float fastestLap = 0.0f;
+    //private static int fastestLapIndex = 0;
+    //private static int fastestLapPlayer = 0;
+
+    //private static int playerIndex = 0;
 
     private static bool startTimer = false;
 
@@ -38,7 +44,18 @@ public class CartTimer : MonoBehaviour
 
     public static void StartRaceTimer()
     {
+        Debug.Log("CartTime.StartRaceTimer");
         startTimer = true;
+    }
+
+    public static void LapFinished(float lapTime, int lap, int playerIndex)
+    {
+        //if(lapTime < fastestLap)
+        //{
+        //    fastestLap = lapTime;
+        //    fastestLapIndex = lap;
+        //    fastestLapPlayer = playerIndex;
+        //}
     }
 
     void OnGUI()

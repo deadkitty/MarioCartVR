@@ -4,21 +4,21 @@ using System.Collections;
 public class MotorSound : MonoBehaviour 
 {
     private AudioSource source;
-    private WheelCollider wheelCollider;
+    private WheelCollider collider;
 
     public int value = 800;
 
 	void Start () 
     {
         source = GameObject.Find("enginesound").GetComponent<AudioSource>();
-        wheelCollider = GameObject.Find("backleftwheel").GetComponent<WheelCollider>();
+        collider = GameObject.Find("backleftwheel").GetComponent<WheelCollider>();
 	}
 	
 	void Update ()
     {
         if (networkView.isMine)
         {
-            source.pitch = wheelCollider.rpm / value;
+            source.pitch = collider.rpm / value;
         }
 	}
 }
