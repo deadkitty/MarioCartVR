@@ -59,6 +59,7 @@ public class CartMovement : MonoBehaviour
 
     //GUI
     private TextMesh SpeedGUI;
+	private AudioSource EngineSound;
     private float m_wheelrpm = 0f;
 
     //others
@@ -86,6 +87,7 @@ public class CartMovement : MonoBehaviour
     {
         // For Change the Holo Speed GUI in Game
         SpeedGUI = GetComponentInChildren<TextMesh>();
+		EngineSound = GetComponentInChildren<AudioSource>();
 
         if(networkView.isMine)
         {
@@ -441,6 +443,8 @@ public class CartMovement : MonoBehaviour
 		m_wheelrpm /= wheels.Length;
 
 		SpeedGUI.text = m_wheelrpm.ToString() + " KM/h";
+		EngineSound.pitch = m_wheelrpm / 140;
+
 
     }
 

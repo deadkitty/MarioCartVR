@@ -3140,7 +3140,7 @@ Transform:
 --- !u!1 &1769383098
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100144, guid: 24ea2a5e22eabf249a45e3e1d86f3ad6, type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
@@ -3165,14 +3165,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b183718b69bbf4f9c2129b63376ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 100144, guid: 24ea2a5e22eabf249a45e3e1d86f3ad6, type: 2}
+  playerPrefab: {fileID: 100150, guid: 24ea2a5e22eabf249a45e3e1d86f3ad6, type: 2}
   spawn1: {fileID: 1626492192}
   spawn2: {fileID: 614032207}
   allPlayersConnected: 0
 --- !u!4 &1769383100
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400144, guid: 24ea2a5e22eabf249a45e3e1d86f3ad6, type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769383098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3184,8 +3184,7 @@ Transform:
 --- !u!148 &1769383101
 NetworkView:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 14800000, guid: 24ea2a5e22eabf249a45e3e1d86f3ad6,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769383098}
   m_Enabled: 1
