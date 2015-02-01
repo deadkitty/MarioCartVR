@@ -13,7 +13,7 @@ public class Turtle : MonoBehaviour
 
     private int cartLayer;
 
-    public float yForce = 10000.0f;
+    public float yForce = 1000.0f;
     public float sideForce = 200.0f;
 
     private float xForce;
@@ -33,6 +33,10 @@ public class Turtle : MonoBehaviour
             otherPlayer = Players.GetPlayer(0);
             owner = Players.GetPlayer(1);
         }
+
+        transform.rotation = new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w);
+
+        rigidbody.AddForce(owner.rigidbody.velocity);
 
         xForce = Random.Range(-sideForce, sideForce);
         zForce = Random.Range(-sideForce, sideForce);
