@@ -2,8 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CartScripts\CartItemGui.cs">
     <Files>
-      <File FileName="Assets\Scripts\CartScripts\CartItemGui.cs" Line="45" Column="26" />
-      <File FileName="Assets\Scripts\Network\NetworkManager.cs" Line="18" Column="30" />
+      <File FileName="Assets\Scripts\CartScripts\CartItemGui.cs" Line="7" Column="30" />
+      <File FileName="Assets\Scripts\Network\NetworkManager.cs" Line="19" Column="30" />
+      <File FileName="Assets\Scripts\SceneScripts\MainMenuScript.cs" Line="12" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

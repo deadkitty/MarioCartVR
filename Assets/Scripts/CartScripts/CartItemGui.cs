@@ -4,7 +4,7 @@ using System.Collections;
 public class CartItemGui : MonoBehaviour 
 {
 
-	public int collecteditem;
+	public int collecteditem = 1;
 	private GameObject guimushroom;
 	private GameObject guishell;
 
@@ -13,38 +13,48 @@ public class CartItemGui : MonoBehaviour
 	{
 		guimushroom = GameObject.Find ("guimushroom");
 		guishell = GameObject.Find ("guishell");
-
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-
-	}
-
-	int cartitemgui (int collecteditem)
-	{
-
-		if (collecteditem == 1) 
+		if(collecteditem == 1)
 		{
-			 
+			InvokeRepeating("FlashMushroom", 0, 1);
 		}
-		if (collecteditem == 1) 
+		if(collecteditem == 2)
 		{
+			InvokeRepeating("FlashShell", 5, 1);
 		}
-		
-		int itemid = 0;
-		
-		return itemid;
+		if(collecteditem == 0)
+		{
+
+		}
 	}
 
-	void guiitemblink(int collecteditem)
+	void FlashMushroom()
 	{
-		item.SetActive (true);
-		yield return new WaitForSeconds(.1f);
-		item.SetActive (false);
-		yield return new WaitForSeconds(.1f);
+		if(guimushroom.activeSelf)
+		{
+			guimushroom.SetActive (false);
+		}
+		else
+		{
+			guimushroom.SetActive (true);
+		}
 	}
 
+	void FlashShell()
+	{
+		if(guishell.activeSelf)
+		{
+			guishell.SetActive (false);
+		}
+		else
+		{
+			guishell.SetActive (true);
+		}
+	}
 
 }
+
