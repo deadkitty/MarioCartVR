@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CartScripts\CartItemGui.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Network\NetworkManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\CartScripts\CartItemGui.cs" Line="7" Column="30" />
-      <File FileName="Assets\Scripts\Network\NetworkManager.cs" Line="19" Column="30" />
-      <File FileName="Assets\Scripts\SceneScripts\MainMenuScript.cs" Line="12" Column="39" />
+      <File FileName="Assets\Scripts\Network\NetworkManager.cs" Line="253" Column="1" />
+      <File FileName="Assets\OVR\Scripts\OVRCameraRig.cs" Line="161" Column="3" />
+      <File FileName="Assets\Scripts\CartScripts\CartItemGui.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SceneScripts\MainMenuScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
