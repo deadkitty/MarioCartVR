@@ -18,9 +18,10 @@ $RECYCLE.BIN/
 *.lnk
 
 #Unity Files/Folders
-temp/
-obj/
-Library/
+temp/*
+obj/*
+Library/*
+bin/*
 *.meta
 
 # =========================
