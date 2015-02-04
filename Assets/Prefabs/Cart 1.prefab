@@ -4495,7 +4495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turtleGameObject: {fileID: 104526, guid: fb153af522fa1cd4c871f454c93693de, type: 2}
   shieldGameObject: {fileID: 0}
-  currentItem: 0
+  currentItem: -1
   shieldEnabled: 0
   shieldResetTime: 10
   useMushroom: 0

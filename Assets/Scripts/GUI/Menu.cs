@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
         ingame,
         popupWin,
         popupLost,
+        none,
     }
 
     public enum EButton

@@ -14,29 +14,117 @@ Platform assembly: C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioC
 Loading C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.088 seconds
+- Completed reload, in  0.093 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 Platform assembly: C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\System.dll (this message is harmless)
+Startup.Start
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Startup:Start() (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Startup.cs:27)
+ 
+(Filename: C Line: 0)
+
+Hostlist Received
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnMasterServerEvent(MasterServerEvent) (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:273)
+ 
+(Filename: C Line: 0)
+
+Join Server Racing
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:JoinServer(HostData) (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:346)
+NetworkManager:OnMasterServerEvent(MasterServerEvent) (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:282)
+ 
+(Filename: C Line: 0)
+
+Connected to server
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnConnectedToServer() (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:318)
+ 
+(Filename: C Line: 0)
+
+View ID SceneID: 8 Level Prefix: 0 not found during lookup. Strange behaviour may occur
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 1681)
+
+Received state update for view id' SceneID: 8 Level Prefix: 0' but the NetworkView doesn't exist
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2474)
+
+View ID SceneID: 7 Level Prefix: 0 not found during lookup. Strange behaviour may occur
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 1681)
+
+Received state update for view id' SceneID: 7 Level Prefix: 0' but the NetworkView doesn't exist
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2474)
+
+View ID SceneID: 6 Level Prefix: 0 not found during lookup. Strange behaviour may occur
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 1681)
+
+Received state update for view id' SceneID: 6 Level Prefix: 0' but the NetworkView doesn't exist
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2474)
+
+View ID SceneID: 5 Level Prefix: 0 not found during lookup. Strange behaviour may occur
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 1681)
+
+Received state update for view id' SceneID: 5 Level Prefix: 0' but the NetworkView doesn't exist
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 2474)
+
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
 The referenced script on this Behaviour is missing!
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Mono/MonoBehaviour.cpp Line: 1788)
 
-Platform assembly: C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\bin\MarioCartVR_Data\Managed\System.dll (this message is harmless)
-Hostlist Received
+UnloadTime: 1.315111 ms
+System memory in use before: 54.7 MB.
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+System memory in use after: 52.3 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 1016.
+Total: 3.630978 ms (FindLiveObjects: 0.089955 ms CreateObjectMapping: 0.042044 ms MarkObjects: 0.216577 ms  DeleteObjects: 1.782489 ms)
+
+Startup.OnLevelWasLoaded
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-NetworkManager:OnMasterServerEvent(MasterServerEvent) (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:113)
+Startup:OnLevelWasLoaded(Int32) (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Startup.cs:51)
  
 (Filename: C Line: 0)
 
-SetPlayerID
+Startup.Start
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-NetworkManager:SetPlayerID(String, Int32) (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:155)
+Startup:Start() (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Startup.cs:27)
  
 (Filename: C Line: 0)
+
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+SetPlayerIndex 1
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:StartRace(Int32) (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:400)
+ 
+(Filename: C Line: 0)
+
+StartRace
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:StartRace(Int32) (at C:\Users\Soi Fon\Documents\Visual Studio 2013\Projects\MarioCartVR\Assets\Scripts\Network\NetworkManager.cs:404)
+ 
+(Filename: C Line: 0)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/Runtime/Network/NetworkManager.cpp Line: 745)
 
 Waiting for finish

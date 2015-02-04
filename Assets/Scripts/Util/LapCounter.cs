@@ -29,6 +29,7 @@ public class LapCounter : MonoBehaviour
     {
         sInstance = this;
     }
+
     public static void TriggerEntered(FinishLineListener listener, GameObject player)
     {
         if(player.networkView.isMine)
@@ -59,16 +60,22 @@ public class LapCounter : MonoBehaviour
         }
     }
 
+    public static void Reset()
+    {
+        CurrentLap = 0;
+        raceFinished = false;
+    }
+
     [RPC]
     void RaceFinished(bool wonRace)
     {
         if (wonRace)
         {
-
+            MenuController.ShowMenu(Menu.EType.popupWin);
         }
         else
         {
-
+            MenuController.ShowMenu(Menu.EType.popupLost);
         }
 
         raceFinished = true;

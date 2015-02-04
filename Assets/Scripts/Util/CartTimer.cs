@@ -48,4 +48,12 @@ public class CartTimer : MonoBehaviour
     {
         startTimer = true;
     }
+
+    public static void Reset()
+    {
+        beginRace = false;
+        startTimer = false;
+        CurrentTime = -sInstance.timeTillRaceStarts;
+        sInstance.timeLastFrame = -1.0f;
+    }
 }

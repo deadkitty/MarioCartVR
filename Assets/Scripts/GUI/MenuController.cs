@@ -27,7 +27,13 @@ public class MenuController : MonoBehaviour
         }
 
         currentMenu = menus[0];
-        ShowMenu(Startup.currentMenu);
+        ShowMenu(Startup.CurrentMenu);
+
+        //don't show ingame menu at start after loading a new track
+        if(Startup.CurrentMenu == Menu.EType.ingame)
+        {
+            ToggleMenu();
+        }
 	}
 
 	void Update ()
@@ -112,15 +118,17 @@ public class MenuController : MonoBehaviour
                 sInstance.canGoBack = false;
 
                 break;
+
+            case Menu.EType.none:
+
+                return;
         }
 
         sInstance.currentMenu.gameObject.SetActive(true);
         sInstance.currentMenu.GetButton();
 
-        Startup.currentMenu = type;
+        Startup.CurrentMenu = type;
     }
-
-
 
     public void MenuUp()
     {
@@ -155,9 +163,9 @@ public class MenuController : MonoBehaviour
             case Menu.EButton.cancel: Cancel(); break;
 
             case Menu.EButton.mainmenu: MainMenu(); break;
-            case Menu.EButton.startnew: break;
+            case Menu.EButton.startnew: StartNew(); break;
 
-            case Menu.EButton.next: break;
+            case Menu.EButton.next: Next(); break;
         }
     }
 
@@ -180,13 +188,13 @@ public class MenuController : MonoBehaviour
 
     private void SelectRacing()
     {
-        NetworkManager.GameName = "Racing";
+        Startup.GameName = "Racing";
         InstanciateGame();
     }
 
     private void SelectPursuit()
     {
-        NetworkManager.GameName = "Pursuit";
+        Startup.GameName = "Pursuit";
         InstanciateGame();
     }
 
@@ -202,8 +210,6 @@ public class MenuController : MonoBehaviour
         }
 
         ShowMenu(Menu.EType.ingame);
-
-        canToggle = true;
         ToggleMenu();
     }
 
@@ -223,6 +229,23 @@ public class MenuController : MonoBehaviour
             NetworkManager.LeaveServer();
         }
 
+        Application.LoadLevel("MainMenu");
+
         ShowMenu(Menu.EType.main);
+    }
+
+    private void StartNew()
+    {
+        if(LapCounter.raceFinished)
+        {
+            NetworkManager.Reset();            
+            CartTimer.Reset();
+            LapCounter.Reset();
+        }
+    }
+
+    private void Next()
+    {
+        ShowMenu(Menu.EType.ingame);
     }
 }

@@ -320,9 +320,14 @@ public class CartMovement : MonoBehaviour
             brakeLights.SetFloat("_Intensity", 0.0f);
         }
 
-        if (Input.GetButton("ResetCar"))
+        if (Input.GetButtonDown("ResetCar"))
         {
             ResetCar();
+        }
+
+        if(Input.GetButtonDown("ResetCamera"))
+        {
+            ResetCamera();
         }
 
         CheckHandbrake();
@@ -391,6 +396,12 @@ public class CartMovement : MonoBehaviour
             resetTimer = 0;
             currentEnginePower = 0;
         }
+    }
+
+    void ResetCamera()
+    {
+        GameObject camera = GameObject.Find("Camera");
+        camera.transform.FindChild("OVRCameraRig").transform.rotation = Quaternion.identity;
     }
 
     void UpdateWheelGraphics(Vector3 relativeVelocity)
