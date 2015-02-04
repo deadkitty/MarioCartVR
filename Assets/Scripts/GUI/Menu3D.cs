@@ -1,153 +1,185 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿//using UnityEngine;
+//using System.Collections;
 
-public class Menu3D : MonoBehaviour 
-{
-    public enum EMenu
-    {
-        main,
-        gamemodeSelection,
-        ingame,
-        popupWin,
-        popupLost,
-        none,
-    }
+//public class Menu3D : MonoBehaviour 
+//{
+//    public GameObject currentMenu;
+//    public GameObject currentButton;
 
-    private static Menu3D sInstance;
+//    private GameObject mainMenu;
+//    private GameObject gamemodeMenu;
+//    private GameObject ingameMenu;
+//    private GameObject popupWinMenu;
+//    private GameObject popupLostMenu;
 
-    public EMenu currentMenuType;
+//    private Menu[] menus;
+//    private Menu currentSubmenu;
 
-    public GameObject currentMenu;
-    public GameObject currentButton;
+//    private bool canToggle = false;
+//    private bool canGoBack = false;
+//    private bool canSwitchButton = true;
 
-    private GameObject mainMenu;
-    private GameObject gamemodeMenu;
-    private GameObject ingameMenu;
-    private GameObject popupWinMenu;
-    private GameObject popupLostMenu;
+//    private bool startServer = false;
+    
+//    void Start () 
+//    {
 
-    private Submenu currentSubmenu;
-
-    private bool canToggle = false;
-    private bool canGoBack = false;
-    private bool canSwitchButton = true;
-
-    private bool navigationState = true;
-    private bool lastNavigationState = true;
-
-	void Start () 
-    {
-        sInstance = this;
-        mainMenu      = transform.FindChild("MainMenu").gameObject;
-        gamemodeMenu  = transform.FindChild("GamemodeMenu").gameObject;
-        ingameMenu    = transform.FindChild("IngameMenu").gameObject;
-        popupWinMenu  = transform.FindChild("PopupWonGame").gameObject;
-        popupLostMenu = transform.FindChild("PopupLostGame").gameObject;
-
-        Show(EMenu.main);
-        currentButton = currentSubmenu.GetButton();
-        currentButton.renderer.material.color = Color.green;
-	}
+//        //mainMenu      = transform.FindChild("MainMenu").gameObject;
+//        //gamemodeMenu  = transform.FindChild("GamemodeMenu").gameObject;
+//        //ingameMenu    = transform.FindChild("IngameMenu").gameObject;
+//        //popupWinMenu  = transform.FindChild("PopupWonGame").gameObject;
+//        //popupLostMenu = transform.FindChild("PopupLostGame").gameObject;
+//    }
 	
-	void Update () 
-    {
-        if(currentMenu.activeSelf)
-        {
-            if (Input.GetAxis("NavigateMenu") < 0.5f && Input.GetAxis("NavigateMenu") > -0.5f)
-            {
-                canSwitchButton = true;
-            }
-            else if (Input.GetAxis("NavigateMenu") <= -1.0f && canSwitchButton)
-            {
-                canSwitchButton = false;
-                MenuUp();
-            }
-            else if (Input.GetAxis("NavigateMenu") >= 1.0f && canSwitchButton)
-            {
-                canSwitchButton = false;
-                MenuDown();
-            }
+//    void Update () 
+//    {
+//        if(currentMenu.activeSelf)
+//        {
+//            if (Input.GetAxis("NavigateMenu") < 0.5f && Input.GetAxis("NavigateMenu") > -0.5f)
+//            {
+//                canSwitchButton = true;
+//            }
+//            else if (Input.GetAxis("NavigateMenu") <= -1.0f && canSwitchButton)
+//            {
+//                canSwitchButton = false;
+//                MenuUp();
+//            }
+//            else if (Input.GetAxis("NavigateMenu") >= 1.0f && canSwitchButton)
+//            {
+//                canSwitchButton = false;
+//                MenuDown();
+//            }
 
-            if (Input.GetButtonDown("Select"))
-            {
-                Select();
-            }
+//            if (Input.GetButtonDown("Select"))
+//            {
+//                Select();
+//            }
 
-            if (Input.GetButtonDown("GoBack") && canGoBack)
-            {
-                GoBack();
-            }
-        }
+//            if (Input.GetButtonDown("GoBack") && canGoBack)
+//            {
+//                GoBack();
+//            }
+//        }
 
-        if(Input.GetButtonDown("ToggleMenu") && canToggle)
-        {
-            ToggleMenu();
-        }
-	}
+//        if(Input.GetButtonDown("ToggleMenu") && canToggle)
+//        {
+//            ToggleMenu();
+//        }
+//    }
 
-    public void Show(EMenu menu)
-    {
-        if(sInstance.currentMenu != null)
-        {
-            sInstance.currentMenu.SetActive(false);
-        }
+//    public void Show(Menu.EType menu)
+//    {
+//        currentMenu.SetActive(false);
+        
+//        switch(menu)
+//        {
+//            case Menu.EType.main             : currentMenu = mainMenu     ; break;
+//            case Menu.EType.gamemodeSelection: currentMenu = gamemodeMenu ; break;
+//            case Menu.EType.ingame           : currentMenu = ingameMenu   ; break;
+//            case Menu.EType.popupWin         : currentMenu = popupWinMenu ; break;
+//            case Menu.EType.popupLost        : currentMenu = popupLostMenu; break;
+//        }
 
-        switch(menu)
-        {
-            case EMenu.main             : sInstance.currentMenu = sInstance.mainMenu     ; break;
-            case EMenu.gamemodeSelection: sInstance.currentMenu = sInstance.gamemodeMenu ; break;
-            case EMenu.ingame           : sInstance.currentMenu = sInstance.ingameMenu   ; break;
-            case EMenu.popupWin         : sInstance.currentMenu = sInstance.popupWinMenu ; break;
-            case EMenu.popupLost        : sInstance.currentMenu = sInstance.popupLostMenu; break;
-            case EMenu.none             : sInstance.currentMenu = null                   ; break;
-        }
+//        currentMenu.SetActive(true);
+//        currentSubmenu = currentMenu.GetComponent<Menu>();
+//        currentSubmenu.ClearButtonColors();
 
-        sInstance.currentMenuType = menu;
+//        currentButton = currentSubmenu.GetButton();
+//    }
 
-        if(sInstance.currentMenu != null)
-        {
-            sInstance.currentMenu.SetActive(true);
-            sInstance.currentSubmenu = sInstance.currentMenu.GetComponent<Submenu>();
-        }
-    }
+//    public void MenuUp()
+//    {
+//        currentButton = currentSubmenu.GetPrev();
+//    }
 
-    public void Show(GameObject menu)
-    {
-        if (sInstance.currentMenu != null)
-        {
-            sInstance.currentMenu.SetActive(false);
-        }
+//    public void MenuDown()
+//    {
+//        currentButton = currentSubmenu.GetNext();
+//    }
 
-        sInstance.currentMenu = menu;
-        sInstance.currentMenu.SetActive(true);
-    }
+//    public void ToggleMenu()
+//    {
+//        currentMenu.SetActive(!currentMenu.activeSelf);
+//    }
 
-    public void MenuUp()
-    {
-        currentButton.renderer.material.color = Color.white;
-        currentButton = currentSubmenu.GetPrev();
-        currentButton.renderer.material.color = Color.green;
-    }
+//    public void GoBack()
+//    {
+//        Show(Menu.EType.main);
+//    }
 
-    public void MenuDown()
-    {
-        currentButton.renderer.material.color = Color.white;
-        currentButton = currentSubmenu.GetNext();
-        currentButton.renderer.material.color = Color.green;
-    }
+//    public void Select()
+//    {
+//        switch(currentSubmenu.CurrentButton)
+//        {
+//            case Menu.EButton.startgame: StartGame(); break;
+//            case Menu.EButton.joingame: JoinGame(); break;
+//            case Menu.EButton.exit: ExitGame(); break;
 
-    public void ToggleMenu()
-    {
-        sInstance.currentMenu.SetActive(!sInstance.currentMenu.activeSelf);
-    }
+//            case Menu.EButton.racing: SelectRacing(); break;
+//            case Menu.EButton.pursuit: SelectPursuit(); break;
+//            case Menu.EButton.cancel: Cancel(); break;
 
-    public void Select()
-    {
+//            case Menu.EButton.mainmenu: break;
+//            case Menu.EButton.startnew: break;
 
-    }
+//            case Menu.EButton.next: break;
+//        }
+//    }
 
-    public void GoBack()
-    {
+//    private void StartGame()
+//    {
+//        startServer = true;
+//        Show(Menu.EType.gamemodeSelection);
+//    }
 
-    }
-}
+//    private void JoinGame()
+//    {
+//        startServer = false;
+//        Show(Menu.EType.gamemodeSelection);
+//    }
+
+//    private void ExitGame()
+//    {
+//        Application.Quit();
+//    }
+
+//    private void SelectRacing()
+//    {
+//        if(startServer)
+//        {
+//            //NetworkManager.sInstance.StartServer();
+//        }
+//        else
+//        {
+//            //NetworkManager.sInstance.RefreshHostList();
+//        }
+
+//        Show(Menu.EType.ingame);
+
+//        canToggle = true;
+//        ToggleMenu();
+//    }
+
+//    private void SelectPursuit()
+//    {
+//        if (startServer)
+//        {
+//            //NetworkManager.sInstance.StartServer();
+//        }
+//        else
+//        {
+//            //NetworkManager.sInstance.RefreshHostList();
+//            //NetworkManager.sInstance.JoinServer(NetworkManager.sInstance.HostList[0]);
+//        }
+
+//        Show(Menu.EType.ingame);
+
+//        canToggle = true;
+//        ToggleMenu();
+//    }
+
+//    private void Cancel()
+//    {
+//        Show(Menu.EType.main);
+//    }
+//}

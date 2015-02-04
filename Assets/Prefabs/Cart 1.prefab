@@ -1369,7 +1369,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118124}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 393.519989, y: 157.020004, z: 163.399994}
+  m_LocalPosition: {x: 271.160004, y: 156.080002, z: 77.5999985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418126}
@@ -1406,7 +1406,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118130}
   m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106829}
-  m_LocalPosition: {x: -1.29999995, y: 0, z: 1.20000005}
+  m_LocalPosition: {x: -1.79999995, y: .0359999985, z: 1.93099999}
   m_LocalScale: {x: 1.50000012, y: .300000012, z: 1.5}
   m_Children: []
   m_Father: {fileID: 418132}
@@ -1418,7 +1418,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118132}
   m_LocalRotation: {x: 0, y: 0, z: .707102835, w: .707110822}
-  m_LocalPosition: {x: 1.29999995, y: 0, z: 1.20000005}
+  m_LocalPosition: {x: 1.79999995, y: .0359999985, z: 1.93099999}
   m_LocalScale: {x: 1.50000024, y: .300000012, z: 1.5}
   m_Children: []
   m_Father: {fileID: 418132}
@@ -1430,7 +1430,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118146}
   m_LocalRotation: {x: 0, y: 0, z: .707102835, w: .707110822}
-  m_LocalPosition: {x: -1.29999995, y: 0, z: -1.25}
+  m_LocalPosition: {x: -1.79999995, y: .0359999985, z: -1.61800003}
   m_LocalScale: {x: 1.50000024, y: .300000012, z: 1.5}
   m_Children: []
   m_Father: {fileID: 418132}
@@ -1442,7 +1442,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118134}
   m_LocalRotation: {x: 0, y: 0, z: .707102835, w: .707110822}
-  m_LocalPosition: {x: 1.29998779, y: 0, z: -1.25}
+  m_LocalPosition: {x: 1.79999995, y: .0359999985, z: -1.61800003}
   m_LocalScale: {x: 1.50000131, y: .300000012, z: 1.5}
   m_Children: []
   m_Father: {fileID: 418132}
@@ -1454,7 +1454,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.839999974, z: 0}
+  m_LocalPosition: {x: 0, y: -.74000001, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 418156}
@@ -4342,8 +4342,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 1.89999998, z: 5.9000001}
-  m_Center: {x: 0, y: .300000012, z: .5}
+  m_Size: {x: 4, y: 1.39999998, z: 5.5}
+  m_Center: {x: 0, y: .100000001, z: .5}
 --- !u!75 &7518278
 ConstantForce:
   m_ObjectHideFlags: 1

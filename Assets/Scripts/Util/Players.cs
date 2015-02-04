@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Players : MonoBehaviour 
+public class Players : MonoBehaviour
 {
-    public const int playerCount = 2;
-
-    public GameObject[] player = new GameObject[playerCount];
-
     private static Players sInstance;
+
+    public const int playerCount = 2;
+    public GameObject[] player = new GameObject[playerCount];
+    
+	void Start () 
+    {
+        sInstance = this;
+	}
 
     public static void SetPlayer(int index, GameObject player)
     {
@@ -19,9 +23,4 @@ public class Players : MonoBehaviour
     {
         return sInstance.player[index];
     }
-
-	void Start () 
-    {
-        sInstance = this;
-	}
 }

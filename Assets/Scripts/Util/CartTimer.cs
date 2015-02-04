@@ -3,13 +3,20 @@ using System.Collections;
 
 public class CartTimer : MonoBehaviour
 {
-    private static float currentTime = 0.0f;
-    private static float timeTillRaceStarts = 0.0f;
-    private static float timeLastFrame = -1.0f;
+    private static CartTimer sInstance;
+
+    public float timeTillRaceStarts = 0.0f;
+    private float currentTime = 0.0f;
+    private float timeLastFrame = -1.0f;
 
     private static bool startTimer = false;
-
     private static bool beginRace = false;
+    
+    public static float CurrentTime
+    {
+        get { return sInstance.currentTime; }
+        set { sInstance.currentTime = value; }
+    }
 
     public static bool BeginRace
     {
@@ -18,6 +25,7 @@ public class CartTimer : MonoBehaviour
 
 	void Start () 
     {
+        sInstance = this;
         currentTime = -timeTillRaceStarts;
 	}
 	
@@ -39,10 +47,5 @@ public class CartTimer : MonoBehaviour
     public static void StartRaceTimer()
     {
         startTimer = true;
-    }
-
-    void OnGUI()
-    {
-        GUI.TextArea(new Rect(200, 50, 100, 30), "Time: " + currentTime);
     }
 }

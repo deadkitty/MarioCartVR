@@ -3,53 +3,57 @@ using System.Collections;
 
 public class LapCounter : MonoBehaviour 
 {
+    private static LapCounter sInstance;
+
     public FinishLineListener[] finishLines;
 
     public int maxLaps = 5;
-
-    private int lap = 0;
-
+    private int currentLap = 0;
     private int lineIndex = 0;
 
-    private bool raceFinished = false;
+    public static bool raceFinished = false;
+    
+    public static int MaxLaps
+    {
+        get { return sInstance.maxLaps; }
+        set { sInstance.maxLaps = value; }
+    }
 
-    private string finishedString = "";
-
+    public static int CurrentLap
+    {
+        get { return sInstance.currentLap; }
+        set { sInstance.currentLap = value; }
+    }
+    
     void Start()
     {
-
+        sInstance = this;
     }
-
-    void Update()
-    {
-
-    }
-
-    public void TriggerEntered(FinishLineListener listener, GameObject player)
+    public static void TriggerEntered(FinishLineListener listener, GameObject player)
     {
         if(player.networkView.isMine)
         {
-            if (finishLines[lineIndex].lineNumber != listener.lineNumber)
+            if (sInstance.finishLines[sInstance.lineIndex].lineNumber != listener.lineNumber)
             {
-                ++lineIndex;
-                lineIndex %= finishLines.Length;
-                finishLines[lineIndex] = listener;
+                ++sInstance.lineIndex;
+                sInstance.lineIndex %= sInstance.finishLines.Length;
+                sInstance.finishLines[sInstance.lineIndex] = listener;
             }
 
-            if (finishLines[(lineIndex + 1) % finishLines.Length].lineNumber == 0 &&
-                finishLines[(lineIndex + 2) % finishLines.Length].lineNumber == 1 &&
-                finishLines[(lineIndex + 3) % finishLines.Length].lineNumber == 2)
+            if (sInstance.finishLines[(sInstance.lineIndex + 1) % sInstance.finishLines.Length].lineNumber == 0 &&
+                sInstance.finishLines[(sInstance.lineIndex + 2) % sInstance.finishLines.Length].lineNumber == 1 &&
+                sInstance.finishLines[(sInstance.lineIndex + 3) % sInstance.finishLines.Length].lineNumber == 2)
             {
-                ++lap;
-                for (int i = 0; i < finishLines.Length; ++i)
+                ++sInstance.currentLap;
+                for (int i = 0; i < sInstance.finishLines.Length; ++i)
                 {
-                    finishLines[i] = finishLines[0];
+                    sInstance.finishLines[i] = sInstance.finishLines[0];
                 }
 
-                if (lap == maxLaps && !raceFinished)
+                if (CurrentLap == MaxLaps && !raceFinished)
                 {
-                    RaceFinished(true);
-                    networkView.RPC("RaceFinished", RPCMode.OthersBuffered, false);
+                    sInstance.RaceFinished(true);
+                    sInstance.networkView.RPC("RaceFinished", RPCMode.OthersBuffered, false);
                 }
             }
         }
@@ -60,23 +64,13 @@ public class LapCounter : MonoBehaviour
     {
         if (wonRace)
         {
-            finishedString = "You Won the Race!!!";
+
         }
         else
         {
-            finishedString = "You Lost the Race!!!";
+
         }
 
         raceFinished = true;
-    }
-
-    void OnGUI()
-    {
-        GUI.TextField(new Rect(50, 50, 100, 30), "Lap: " + lap);
-
-        if (raceFinished)
-        {
-            GUI.TextField(new Rect(50, 150, 200, 30), finishedString);
-        }
     }
 }
