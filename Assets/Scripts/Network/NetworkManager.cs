@@ -226,16 +226,21 @@ public class NetworkManager : MonoBehaviour
 
     private static NetworkManager sInstance;
 
-    private String typeName = "SuperVirtualCartGame";
+    private const String typeName = "SuperVirtualCartGame";
 
     public GameObject playerPrefab;
     public GameObject[] spawns;
 
     private GameObject playerCart;
 
-    private static int playerIndex = 0;
-    
-    private static int playersWhoWantsToReset = 0;
+    private static int playerIndex = -1;    
+    private static int playersWhoWantToReset = 0;
+
+//#if UNITY_EDITOR
+
+    public bool startOffline = false;
+
+//#endif
 
     #endregion
 
@@ -267,7 +272,7 @@ public class NetworkManager : MonoBehaviour
     }
 
     void OnMasterServerEvent(MasterServerEvent msEvent)
-    {
+    {        
         if (msEvent == MasterServerEvent.HostListReceived)
         {
             Debug.Log("Hostlist Received");
@@ -275,9 +280,10 @@ public class NetworkManager : MonoBehaviour
             HostData[] hostList = MasterServer.PollHostList();
 
             bool joinServer = false;
+
             foreach (HostData data in hostList)
             {
-                if (data.gameName == Startup.GameName && data.connectedPlayers < data.playerLimit)
+                if (data.gameName == App.GameName && data.connectedPlayers < data.playerLimit)
                 {
                     JoinServer(data);
                     joinServer = true;
@@ -297,14 +303,16 @@ public class NetworkManager : MonoBehaviour
         Debug.Log("Server Initializied");
         Debug.Log("Player " + Network.connections.Length + " connected from " + Network.player.ipAddress + ":" + Network.player.port + "(Server)");
 
-        SetPlayerIndex(Network.connections.Length);
+        App.LoadLevel(App.ELevel.level1);
 
-        Startup.LoadLevel();
+        SetPlayerIndex(Network.connections.Length);
     }
 
     void OnPlayerConnected(NetworkPlayer player)
     {
         Debug.Log("Player " + Network.connections.Length + " connected from " + player.ipAddress + ":" + player.port);
+
+        networkView.RPC("SetPlayerIndex", player, Network.connections.Length);
     }
 
     void OnPlayerDisconnected(NetworkPlayer player)
@@ -316,8 +324,8 @@ public class NetworkManager : MonoBehaviour
     void OnConnectedToServer()
     {
         Debug.Log("Connected to server");
-        
-        Startup.LoadLevel();
+
+        App.LoadLevel(App.ELevel.level1);
     }
 
     #endregion
@@ -326,19 +334,24 @@ public class NetworkManager : MonoBehaviour
 
     public static void StartServer()
     {
-        Network.InitializeServer(Players.playerCount - 1, 25000, !Network.HavePublicAddress());
-        MasterServer.RegisterHost(sInstance.typeName, Startup.GameName);
+        Network.InitializeServer(Players.Count - 1, 25000, !Network.HavePublicAddress());
+        MasterServer.RegisterHost(typeName, App.GameName);
     }
 
     public static void StopServer()
     {
+        for (int i = 0; i < Players.Count; ++i )
+        {
+            Network.Destroy(Players.GetPlayer(i));
+        }
+
         Network.Disconnect();
         MasterServer.UnregisterHost();
     }
 
     public static void RefreshHostList()
     {
-        MasterServer.RequestHostList(sInstance.typeName);
+        MasterServer.RequestHostList(typeName);
     }
 
     public static void JoinServer(HostData host)
@@ -392,15 +405,13 @@ public class NetworkManager : MonoBehaviour
         Debug.Log("SetPlayerIndex " + index);
 
         playerIndex = index;
+
+        PlayerReady();
     }
 
     [RPC]
-    void StartRace(int index)
+    void StartRace()
     {
-        Debug.Log("SetPlayerIndex " + index);
-
-        playerIndex = index;
-
         Debug.Log("StartRace");
 
         SpawnPlayer();
@@ -410,9 +421,9 @@ public class NetworkManager : MonoBehaviour
     [RPC]
     void PlayerWantsToReset()
     {
-        ++playersWhoWantsToReset;
+        ++playersWhoWantToReset;
 
-        if (playersWhoWantsToReset == Network.maxConnections + 1)
+        if (playersWhoWantToReset == Network.maxConnections + 1)
         {
             sInstance.networkView.RPC("ResetPlayer", RPCMode.AllBuffered);
         }
@@ -428,8 +439,9 @@ public class NetworkManager : MonoBehaviour
 
             playerCart.GetComponent<ItemController>().currentItem = Item.EItemType.none;
 
-            playersWhoWantsToReset = 0;
+            playersWhoWantToReset = 0;
 
+            CartTimer.Reset();
             CartTimer.StartRaceTimer();
         }
     }
@@ -438,21 +450,32 @@ public class NetworkManager : MonoBehaviour
     void Ready()
     {
         Debug.Log("Player is Ready");
-        
-        if(Network.connections.Length == Network.maxConnections)
+        Debug.Log("Connections: " + Network.connections.Length + " MaxConnections: " + Network.maxConnections);
+
+//#if UNITY_EDITOR
+
+        if (startOffline)
         {
-            for (int i = 0; i < Network.connections.Length; ++i )
+            StartRace();
+        }
+
+        if (!startOffline)
+        {
+
+//#endif
+
+            if (Network.connections.Length == Network.maxConnections)
             {
-                networkView.RPC("StartRace", Network.connections[i], i + 1);
+                networkView.RPC("StartRace", RPCMode.AllBuffered);
             }
 
-            StartRace(0);
+//#if UNITY_EDITOR
+
         }
+
+//#endif
+
     }
-
-    #endregion
-
-    #region Member Functions
 
     #endregion
 }

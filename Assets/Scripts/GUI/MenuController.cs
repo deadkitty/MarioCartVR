@@ -3,40 +3,32 @@ using System.Collections;
 
 public class MenuController : MonoBehaviour 
 {
+    #region Fields
+
     private static MenuController sInstance;
 
     public GameObject menuObject;
 
-    private Menu[] menus;
-    private Menu currentMenu;
+    private static Menu[] menus;
+    private static Menu currentMenu;
 
-    private bool canToggle = false;
-    private bool canGoBack = false;
-    private bool canSwitchButton = true;
+    private static bool canToggle = false;
+    private static bool canGoBack = false;
+    private static bool canSwitchButton = true;
 
-    private bool startServer = false;
+    private static bool startServer = false;
+    
+    #endregion
 
-	void Start () 
+    #region Events
+
+    void Start()
     {
+        Debug.Log("MenuController.Start");
         sInstance = this;
+    }
 
-        menus = new Menu[menuObject.transform.childCount];
-        for (int i = 0; i < menus.Length; ++i)
-        {
-            menus[i] = menuObject.transform.GetChild(i).GetComponent<Menu>();
-        }
-
-        currentMenu = menus[0];
-        ShowMenu(Startup.CurrentMenu);
-
-        //don't show ingame menu at start after loading a new track
-        if(Startup.CurrentMenu == Menu.EType.ingame)
-        {
-            ToggleMenu();
-        }
-	}
-
-	void Update ()
+    void Update()
     {
         if (currentMenu.gameObject.activeSelf)
         {
@@ -71,51 +63,69 @@ public class MenuController : MonoBehaviour
             ToggleMenu();
         }
     }
+    
+    #endregion
+
+    #region Class Functions
+
+    public static void Initialize()
+    {
+        Debug.Log("MenuController.Initialize");
+        menus = new Menu[sInstance.menuObject.transform.childCount];
+
+        for (int i = 0; i < menus.Length; ++i)
+        {
+            menus[i] = sInstance.menuObject.transform.GetChild(i).GetComponent<Menu>();
+        }
+
+        currentMenu = menus[0];
+        ShowMenu(App.CurrentMenu);
+    }
 
     public static void ShowMenu(Menu.EType type)
     {
-        sInstance.currentMenu.ClearButtonColors();
-        sInstance.currentMenu.gameObject.SetActive(false);
+        currentMenu.ClearButtonColors();
+        currentMenu.gameObject.SetActive(false);
 
-        switch(type)
+        switch (type)
         {
-            case Menu.EType.main: 
-                
-                sInstance.currentMenu = sInstance.menus[0];
-                sInstance.canToggle = false;
-                sInstance.canGoBack = false;
+            case Menu.EType.main:
+
+                currentMenu = menus[0];
+                canToggle = false;
+                canGoBack = false;
 
                 break;
 
             case Menu.EType.gamemodeSelection:
 
-                sInstance.currentMenu = sInstance.menus[1];
-                sInstance.canToggle = false;
-                sInstance.canGoBack = true;
+                currentMenu = menus[1];
+                canToggle = false;
+                canGoBack = true;
 
                 break;
 
             case Menu.EType.ingame:
-                
-                sInstance.currentMenu = sInstance.menus[2];
-                sInstance.canToggle = true;
-                sInstance.canGoBack = false;
+
+                currentMenu = menus[2];
+                canToggle = true;
+                canGoBack = false;
 
                 break;
 
             case Menu.EType.popupWin:
-                
-                sInstance.currentMenu = sInstance.menus[3];
-                sInstance.canToggle = false;
-                sInstance.canGoBack = false;
+
+                currentMenu = menus[3];
+                canToggle = false;
+                canGoBack = false;
 
                 break;
 
             case Menu.EType.popupLost:
 
-                sInstance.currentMenu = sInstance.menus[4];
-                sInstance.canToggle = false;
-                sInstance.canGoBack = false;
+                currentMenu = menus[4];
+                canToggle = false;
+                canGoBack = false;
 
                 break;
 
@@ -124,11 +134,15 @@ public class MenuController : MonoBehaviour
                 return;
         }
 
-        sInstance.currentMenu.gameObject.SetActive(true);
-        sInstance.currentMenu.GetButton();
+        currentMenu.gameObject.SetActive(true);
+        currentMenu.GetButton();
 
-        Startup.CurrentMenu = type;
+        App.CurrentMenu = type;
     }
+   
+    #endregion
+
+    #region Member Functions
 
     public void MenuUp()
     {
@@ -188,13 +202,13 @@ public class MenuController : MonoBehaviour
 
     private void SelectRacing()
     {
-        Startup.GameName = "Racing";
+        App.GameMode = App.EGameMode.racing;
         InstanciateGame();
     }
 
     private void SelectPursuit()
     {
-        Startup.GameName = "Pursuit";
+        App.GameMode = App.EGameMode.pursuit;
         InstanciateGame();
     }
 
@@ -220,7 +234,7 @@ public class MenuController : MonoBehaviour
 
     private void MainMenu()
     {
-        if(Network.isServer)
+        if (Network.isServer)
         {
             NetworkManager.StopServer();
         }
@@ -229,17 +243,16 @@ public class MenuController : MonoBehaviour
             NetworkManager.LeaveServer();
         }
 
-        Application.LoadLevel("MainMenu");
+        App.LoadLevel(App.ELevel.none);
 
         ShowMenu(Menu.EType.main);
     }
 
     private void StartNew()
     {
-        if(LapCounter.raceFinished)
+        if (LapCounter.raceFinished)
         {
-            NetworkManager.Reset();            
-            CartTimer.Reset();
+            NetworkManager.Reset();
             LapCounter.Reset();
         }
     }
@@ -248,4 +261,6 @@ public class MenuController : MonoBehaviour
     {
         ShowMenu(Menu.EType.ingame);
     }
+    
+    #endregion
 }

@@ -103,8 +103,6 @@ public class CartMovement : MonoBehaviour
         SetupGears();
 
         initialDragMultiplierX = dragMultiplier.x;
-
-        //itemController = GetComponent<ItemController>();
     }
 
     void Update()

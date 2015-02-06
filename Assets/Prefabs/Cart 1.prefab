@@ -4475,7 +4475,7 @@ MonoBehaviour:
   rearWheels:
   - {fileID: 418140}
   - {fileID: 418142}
-  topSpeed: 150
+  topSpeed: 160
   numberOfGears: 5
   maximumTurn: 15
   minimumTurn: 10

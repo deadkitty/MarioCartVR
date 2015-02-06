@@ -5,9 +5,13 @@ public class Players : MonoBehaviour
 {
     private static Players sInstance;
 
-    public const int playerCount = 2;
-    public GameObject[] player = new GameObject[playerCount];
-    
+    public GameObject[] player;
+
+    public static int Count
+    {
+        get { return sInstance.player.Length; }
+    }
+
 	void Start () 
     {
         sInstance = this;
