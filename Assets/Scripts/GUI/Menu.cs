@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
     {
         main,
         gamemodeSelection,
+        levelSelection,
         ingame,
         popupWin,
         popupLost,
@@ -20,6 +21,8 @@ public class Menu : MonoBehaviour
         exit,
         racing,
         pursuit,
+        level1,
+        level2,
         cancel,
         mainmenu,
         startnew,

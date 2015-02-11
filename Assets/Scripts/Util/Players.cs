@@ -5,26 +5,22 @@ public class Players : MonoBehaviour
 {
     private static Players sInstance;
 
-    public GameObject[] player;
-
-    public static int Count
-    {
-        get { return sInstance.player.Length; }
-    }
+    private static GameObject[] player;
 
 	void Start () 
     {
         sInstance = this;
+        player = new GameObject[App.MaxPlayers];
 	}
 
-    public static void SetPlayer(int index, GameObject player)
+    public static void SetPlayer(int index, GameObject newPlayer)
     {
-        sInstance.player[index] = player;
-        sInstance.player[index].name = "Cart" + index;
+        player[index] = newPlayer;
+        player[index].name = "Cart" + index;
     }
 
     public static GameObject GetPlayer(int index)
     {
-        return sInstance.player[index];
+        return player[index];
     }
 }

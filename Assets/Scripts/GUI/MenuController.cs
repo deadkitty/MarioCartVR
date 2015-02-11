@@ -77,7 +77,7 @@ public class MenuController : MonoBehaviour
         {
             menus[i] = sInstance.menuObject.transform.GetChild(i).GetComponent<Menu>();
         }
-
+        
         currentMenu = menus[0];
         ShowMenu(App.CurrentMenu);
     }
@@ -105,9 +105,17 @@ public class MenuController : MonoBehaviour
 
                 break;
 
-            case Menu.EType.ingame:
+            case Menu.EType.levelSelection:
 
                 currentMenu = menus[2];
+                canToggle = false;
+                canGoBack = true;
+
+                break;
+
+            case Menu.EType.ingame:
+
+                currentMenu = menus[3];
                 canToggle = true;
                 canGoBack = false;
 
@@ -115,7 +123,7 @@ public class MenuController : MonoBehaviour
 
             case Menu.EType.popupWin:
 
-                currentMenu = menus[3];
+                currentMenu = menus[4];
                 canToggle = false;
                 canGoBack = false;
 
@@ -123,7 +131,7 @@ public class MenuController : MonoBehaviour
 
             case Menu.EType.popupLost:
 
-                currentMenu = menus[4];
+                currentMenu = menus[5];
                 canToggle = false;
                 canGoBack = false;
 
@@ -161,7 +169,13 @@ public class MenuController : MonoBehaviour
 
     public void GoBack()
     {
-        ShowMenu(Menu.EType.main);
+        Debug.Log("GoBack: " + currentMenu.type.ToString());
+
+        switch(currentMenu.type)
+        {
+            case Menu.EType.gamemodeSelection: ShowMenu(Menu.EType.main); break;
+            case Menu.EType.levelSelection   : ShowMenu(Menu.EType.gamemodeSelection); break;
+        }
     }
 
     public void Select()
@@ -175,6 +189,9 @@ public class MenuController : MonoBehaviour
             case Menu.EButton.racing: SelectRacing(); break;
             case Menu.EButton.pursuit: SelectPursuit(); break;
             case Menu.EButton.cancel: Cancel(); break;
+
+            case Menu.EButton.level1: LoadLevel(App.ELevel.level1); break;
+            case Menu.EButton.level2: LoadLevel(App.ELevel.level2); break;
 
             case Menu.EButton.mainmenu: MainMenu(); break;
             case Menu.EButton.startnew: StartNew(); break;
@@ -203,12 +220,23 @@ public class MenuController : MonoBehaviour
     private void SelectRacing()
     {
         App.GameMode = App.EGameMode.racing;
-        InstanciateGame();
+        ShowMenu(Menu.EType.levelSelection);
     }
 
     private void SelectPursuit()
     {
         App.GameMode = App.EGameMode.pursuit;
+        ShowMenu(Menu.EType.levelSelection);
+    }
+
+    private void Cancel()
+    {
+        GoBack();
+    }
+
+    private void LoadLevel(App.ELevel level)
+    {
+        App.Level = level;
         InstanciateGame();
     }
 
@@ -225,11 +253,6 @@ public class MenuController : MonoBehaviour
 
         ShowMenu(Menu.EType.ingame);
         ToggleMenu();
-    }
-
-    private void Cancel()
-    {
-        ShowMenu(Menu.EType.main);
     }
 
     private void MainMenu()

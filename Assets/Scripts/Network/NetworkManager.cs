@@ -1,222 +1,4 @@
-﻿//using UnityEngine;
-//using System.Collections;
-//using System;
-
-//public class NetworkManager : MonoBehaviour
-//{
-//    private static NetworkManager sInstance;
-
-//    private String typeName = "SuperVirtualCartGame";
-    
-//    public GameObject playerPrefab;
-//    public GameObject[] spawns;
-
-//    private GameObject playerCart;
-
-//    private HostData[] hostList;
-//    private int playersConnected = 0;
-//    private int playersWhoWantsToReset = 0;
-//    private int playerID = -1;
-
-//    private bool allPlayersConnected = false;
-
-
-//    public static HostData[] HostList
-//    {
-//        get { return sInstance.hostList; }
-//    }
-        
-//    public static int PlayersConnected
-//    {
-//        get { return sInstance.playersConnected; }
-//        set
-//        {
-//            sInstance.playersConnected = value;
-//            CheckAllPlayersConnected();
-//        }
-//    }
-
-//    public static int PlayerID
-//    {
-//        get { return sInstance.playerID; }
-//    }
-    
-//    void Start()
-//    {
-//        sInstance = this;
-//    }
-
-    
-//    public static void StartServer()
-//    {
-//        Network.InitializeServer(Players.playerCount - 1, 25000, !Network.HavePublicAddress());
-//        MasterServer.RegisterHost(sInstance.typeName, Startup.GameName);
-//    }
-
-//    public static void StopServer()
-//    {
-//        Network.Disconnect();
-//        MasterServer.UnregisterHost();
-//    }
-
-//    public static void RefreshHostList()
-//    {
-//        MasterServer.RequestHostList(sInstance.typeName);
-//    }
-
-//    public static void JoinServer(HostData host)
-//    {
-//        Debug.Log("Join Server " + host.gameName);
-//        Network.Connect(host);
-//    }
-
-//    public static void LeaveServer()
-//    {
-//        Network.Disconnect();
-//    }
-
-//    public static void Reset()
-//    {
-//        if(Network.isServer)
-//        {
-//            sInstance.PlayerWantsToReset();
-//        }
-//        else
-//        {
-//            sInstance.networkView.RPC("PlayerWantsToReset", RPCMode.Server);
-//        }
-//    }
-
-//    private static void CheckAllPlayersConnected()
-//    {
-//        Debug.Log(PlayersConnected + " from " + Players.playerCount + " connected");
-
-//        if (PlayersConnected == Players.playerCount)
-//        {
-//            sInstance.networkView.RPC("StartRace", RPCMode.AllBuffered);
-//        }
-//    }
-
-//    private static void SpawnPlayer()
-//    {
-//        Transform spawn = sInstance.spawns[PlayerID].transform;
-//        sInstance.playerCart = Network.Instantiate(sInstance.playerPrefab, spawn.position, spawn.rotation, 0) as GameObject;
-//    }
-
-//    void OnMasterServerEvent(MasterServerEvent msEvent)
-//    {
-//        if (msEvent == MasterServerEvent.HostListReceived)
-//        {
-//            Debug.Log("Hostlist Received");
-//            hostList = MasterServer.PollHostList();
-            
-//            Debug.Log("Lengt: " + hostList.Length);
-
-//            if(hostList.Length == 0)
-//            {
-//                Debug.Log("No Server Initialized");
-//                MenuController.ShowMenu(Menu.EType.main);
-//            }
-//            else
-//            {
-//                foreach (HostData data in hostList)
-//                {
-//                    Debug.Log("Name : " + data.gameName);
-//                    Debug.Log("Limit: " + data.playerLimit);
-//                    Debug.Log("Connected: " + data.connectedPlayers);
-
-//                    if (data.gameName == Startup.GameName && data.connectedPlayers < data.playerLimit)
-//                    {
-//                        JoinServer(data);
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-//    void OnServerInitialized()
-//    {
-//        Debug.Log("Server Initializied");
-        
-//        SetPlayerID(playersConnected);
-        
-//        LoadLevel();
-//    }
-
-//    void OnPlayerConnected(NetworkPlayer player)
-//    {
-//        Debug.Log("Player " + playersConnected + " connected from " + player.ipAddress + ":" + player.port);
-
-//        networkView.RPC("SetPlayerID", player, playersConnected);
-//    }
-
-//    void OnPlayerDisconnected(NetworkPlayer player)
-//    {
-//        Network.RemoveRPCs(player);
-//        Network.DestroyPlayerObjects(player);
-
-//        --PlayersConnected;
-//    }
-
-//    void OnConnectedToServer()
-//    {
-//        Debug.Log("Connected to server");
-//        LoadLevel();
-//    }
-
-
-
-//    [RPC]
-//    void SetPlayerID(int id)
-//    {
-//        Debug.Log("SetPlayerID");
-
-//        playerID = id;
-//    }
-
-//    [RPC]
-//    void StartRace()
-//    {
-//        SpawnPlayer();
-//        CartTimer.StartRaceTimer();
-//    }
-
-//    [RPC]
-//    void PlayerWantsToReset()
-//    {
-//        ++playersWhoWantsToReset;
-
-//        if(playersWhoWantsToReset == playersConnected)
-//        {
-//            sInstance.networkView.RPC("ResetPlayer", RPCMode.AllBuffered);
-//        }
-//    }
-
-//    [RPC]
-//    void ResetPlayer()
-//    {
-//        if(networkView.isMine)
-//        {
-//            playerCart.transform.position = spawns[playerID].transform.position;
-//            playerCart.transform.rotation = spawns[playerID].transform.rotation;
-
-//            playerCart.GetComponent<ItemController>().currentItem = Item.EItemType.none;
-
-//            playersWhoWantsToReset = 0;
-
-//            CartTimer.StartRaceTimer();
-//        }
-//    }
-
-//    [RPC]
-//    void Ready()
-//    {
-//        Debug.Log("Player is Ready");
-//        ++PlayersConnected;
-//    }
-//}
-
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections;
 
@@ -229,8 +11,6 @@ public class NetworkManager : MonoBehaviour
     private const String typeName = "SuperVirtualCartGame";
 
     public GameObject playerPrefab;
-    public GameObject[] spawns;
-
     private GameObject playerCart;
 
     private static int playerIndex = -1;    
@@ -245,17 +25,6 @@ public class NetworkManager : MonoBehaviour
     #endregion
 
     #region Properties
-
-    //public static HostData[] HostList
-    //{
-    //    get { return sInstance.hostList; }
-    //}
-
-    //public static int PlayersConnected
-    //{
-    //    get { return sInstance.playersConnected; }
-    //    set { sInstance.playersConnected = value; }
-    //}
 
     public static int PlayerIndex
     {
@@ -303,7 +72,7 @@ public class NetworkManager : MonoBehaviour
         Debug.Log("Server Initializied");
         Debug.Log("Player " + Network.connections.Length + " connected from " + Network.player.ipAddress + ":" + Network.player.port + "(Server)");
 
-        App.LoadLevel(App.ELevel.level1);
+        App.LoadLevel(App.Level);
 
         SetPlayerIndex(Network.connections.Length);
     }
@@ -325,7 +94,7 @@ public class NetworkManager : MonoBehaviour
     {
         Debug.Log("Connected to server");
 
-        App.LoadLevel(App.ELevel.level1);
+        App.LoadLevel(App.Level);
     }
 
     #endregion
@@ -334,13 +103,13 @@ public class NetworkManager : MonoBehaviour
 
     public static void StartServer()
     {
-        Network.InitializeServer(Players.Count - 1, 25000, !Network.HavePublicAddress());
+        Network.InitializeServer(App.MaxPlayers - 1, 25000, !Network.HavePublicAddress());
         MasterServer.RegisterHost(typeName, App.GameName);
     }
 
     public static void StopServer()
     {
-        for (int i = 0; i < Players.Count; ++i )
+        for (int i = 0; i < App.MaxPlayers; ++i)
         {
             Network.Destroy(Players.GetPlayer(i));
         }
@@ -391,7 +160,7 @@ public class NetworkManager : MonoBehaviour
 
     private static void SpawnPlayer()
     {
-        Transform spawn = sInstance.spawns[playerIndex].transform;
+        Transform spawn = App.Spawns[playerIndex].transform;
         sInstance.playerCart = Network.Instantiate(sInstance.playerPrefab, spawn.position, spawn.rotation, 0) as GameObject;
     }
 
@@ -434,8 +203,8 @@ public class NetworkManager : MonoBehaviour
     {
         if (networkView.isMine)
         {
-            playerCart.transform.position = spawns[playerIndex].transform.position;
-            playerCart.transform.rotation = spawns[playerIndex].transform.rotation;
+            playerCart.transform.position = App.Spawns[playerIndex].transform.position;
+            playerCart.transform.rotation = App.Spawns[playerIndex].transform.rotation;
 
             playerCart.GetComponent<ItemController>().currentItem = Item.EItemType.none;
 

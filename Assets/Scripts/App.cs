@@ -30,6 +30,8 @@ public class App : MonoBehaviour
 
     private static App sInstance;
 
+    public static int maxPlayers = 2;
+
     private static EGameMode gameMode;
     private static String    gameName;
     
@@ -38,13 +40,19 @@ public class App : MonoBehaviour
     private static Menu.EType currentMenu;
         
     private static Transform cameraStartPos;
-    
+
     public GameObject[] levels;
+    public GameObject[] spawns;
     public GameObject   camera;
 
     #endregion
 
     #region Properties
+
+    public static int MaxPlayers
+    {
+        get { return App.maxPlayers; }
+    }
 
     public static EGameMode GameMode
     {
@@ -79,6 +87,12 @@ public class App : MonoBehaviour
         set { App.cameraStartPos = value; }
     }
     
+    public static GameObject[] Spawns
+    {
+        get { return sInstance.spawns; }
+        set { sInstance.spawns = value; }
+    }
+
     #endregion
 
     #region Events
@@ -91,6 +105,8 @@ public class App : MonoBehaviour
         gameMode     = EGameMode.none;
         currentMenu  = Menu.EType.none;
         currentLevel = ELevel.none;
+
+        spawns = new GameObject[MaxPlayers];
 
         foreach (GameObject level in levels)
         {
@@ -109,6 +125,7 @@ public class App : MonoBehaviour
 
     public static void LoadLevel(ELevel level)
     {
+        //Switch correct Level Geometry On/Off
         switch(level)
         {
             case ELevel.level1: LoadLevel1(); break;
@@ -118,6 +135,7 @@ public class App : MonoBehaviour
 
         currentLevel = level;
 
+        //Set Camera Starting Position
         cameraStartPos = currentLevelObject.transform.FindChild("CameraStartPos");
 
         sInstance.camera.transform.parent = null;
@@ -130,6 +148,7 @@ public class App : MonoBehaviour
         currentLevelObject.SetActive(false);
         currentLevelObject = sInstance.levels[0];
         currentLevelObject.SetActive(true);
+        FindSpawns();
     }
 
     private static void LoadLevel2()
@@ -137,6 +156,7 @@ public class App : MonoBehaviour
         currentLevelObject.SetActive(false);
         currentLevelObject = sInstance.levels[1];
         currentLevelObject.SetActive(true);
+        FindSpawns();
     }
 
     private static void LoadNone()
@@ -144,6 +164,16 @@ public class App : MonoBehaviour
         currentLevelObject.SetActive(false);
         currentLevelObject = sInstance.levels[2];
         currentLevelObject.SetActive(true);
+    }
+
+    private static void FindSpawns()
+    {
+        Transform spawn = currentLevelObject.transform.FindChild("Spawns");
+
+        for (int i = 0; i < MaxPlayers; ++i)
+        {
+            sInstance.spawns[i] = spawn.GetChild(i).gameObject;
+        }
     }
 
     #endregion
