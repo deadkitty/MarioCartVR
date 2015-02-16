@@ -43,6 +43,7 @@ public class App : MonoBehaviour
 
     public GameObject[] levels;
     public GameObject[] spawns;
+    public GameObject[] player;
     public GameObject   camera;
 
     #endregion
@@ -79,6 +80,7 @@ public class App : MonoBehaviour
     public static String GameName
     {
         get { return App.gameName; }
+        set { App.gameName = value; }
     }
 
     public static Transform CameraStartPos
@@ -101,12 +103,13 @@ public class App : MonoBehaviour
     {
         Debug.Log("App.Start");
         sInstance = this;
-
+        
         gameMode     = EGameMode.none;
         currentMenu  = Menu.EType.none;
         currentLevel = ELevel.none;
 
         spawns = new GameObject[MaxPlayers];
+        player = new GameObject[MaxPlayers];
 
         foreach (GameObject level in levels)
         {
@@ -148,7 +151,9 @@ public class App : MonoBehaviour
         currentLevelObject.SetActive(false);
         currentLevelObject = sInstance.levels[0];
         currentLevelObject.SetActive(true);
+
         FindSpawns();
+        LapCounter.Initialize(currentLevelObject);
     }
 
     private static void LoadLevel2()
@@ -156,7 +161,9 @@ public class App : MonoBehaviour
         currentLevelObject.SetActive(false);
         currentLevelObject = sInstance.levels[1];
         currentLevelObject.SetActive(true);
+
         FindSpawns();
+        LapCounter.Initialize(currentLevelObject);
     }
 
     private static void LoadNone()
@@ -168,12 +175,32 @@ public class App : MonoBehaviour
 
     private static void FindSpawns()
     {
-        Transform spawn = currentLevelObject.transform.FindChild("Spawns");
+        Transform spawn;
+
+        if(App.GameMode == EGameMode.racing)
+        {
+             spawn = currentLevelObject.transform.FindChild("Spawns");
+        }
+        else
+        {
+            spawn = currentLevelObject.transform.FindChild("Spawns2");
+        }
 
         for (int i = 0; i < MaxPlayers; ++i)
         {
             sInstance.spawns[i] = spawn.GetChild(i).gameObject;
         }
+    }
+
+    public static void SetPlayer(int index, GameObject newPlayer)
+    {
+        sInstance.player[index] = newPlayer;
+        sInstance.player[index].name = "Player " + index;
+    }
+
+    public static GameObject GetPlayer(int index)
+    {
+        return sInstance.player[index];
     }
 
     #endregion

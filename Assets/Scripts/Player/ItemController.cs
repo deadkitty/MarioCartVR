@@ -21,11 +21,11 @@ public class ItemController : MonoBehaviour
     {
         if(networkView.isMine)
         {
-            Players.SetPlayer(0, gameObject);
+            App.SetPlayer(0, gameObject);
         }
         else
         {
-            Players.SetPlayer(1, gameObject);
+            App.SetPlayer(1, gameObject);
         }
 
         shieldGameObject = transform.FindChild("Shield").gameObject;

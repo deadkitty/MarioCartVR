@@ -39,7 +39,7 @@ public class CartMovement : MonoBehaviour
     private float[] gearSpeeds;
 
     private int currentGear;
-    private float currentEnginePower = 0.0f;
+    public float currentEnginePower = 0.0f;
 
     private float handbrakeXDragFactor = 0.5f;
     private float initialDragMultiplierX = 10.0f;
@@ -382,6 +382,14 @@ public class CartMovement : MonoBehaviour
             ResetCar();
         }
     }
+    
+    public void Reset()
+    {
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+        resetTimer = 0;
+        currentEnginePower = 0;
+    }
 
     void ResetCar()
     {
@@ -398,8 +406,8 @@ public class CartMovement : MonoBehaviour
 
     void ResetCamera()
     {
-        GameObject camera = GameObject.Find("Camera");
-        camera.transform.FindChild("OVRCameraRig").transform.rotation = Quaternion.identity;
+        //GameObject camera = GameObject.Find("Camera");
+        //camera.transform.FindChild("OVRCameraRig").transform.rotation = Quaternion.identity;
     }
 
     void UpdateWheelGraphics(Vector3 relativeVelocity)
@@ -523,11 +531,15 @@ public class CartMovement : MonoBehaviour
         }
     }
 
+    public float breakMultiplier = 0.0f;
     void CalculateEnginePower(Vector3 relativeVelocity)
     {
         if (throttle == 0)
         {
             currentEnginePower -= Time.deltaTime * 200;
+            breakMultiplier = 1.0f - (1.0f / (m_wheelrpm * m_wheelrpm));
+            breakMultiplier = Mathf.Clamp(breakMultiplier, 0.0f, 1.0f);
+            currentEnginePower *= breakMultiplier;
         }
         else if (HaveTheSameSign(relativeVelocity.z, throttle))
         {
@@ -539,10 +551,7 @@ public class CartMovement : MonoBehaviour
             currentEnginePower -= Time.deltaTime * 300;
         }
 
-        if (currentGear == 0)
-            currentEnginePower = Mathf.Clamp(currentEnginePower, 0, engineForceValues[0]);
-        else
-            currentEnginePower = Mathf.Clamp(currentEnginePower, engineForceValues[currentGear - 1], engineForceValues[currentGear]);
+        currentEnginePower = Mathf.Clamp(currentEnginePower, 0, engineForceValues[engineForceValues.Length - 1]);
     }
 
     void CalculateState()

@@ -1,8 +1,8 @@
 Base path: D:/Programme/Unity3D/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-5-2224
+Pipe name: \\.\pipe\UnityShaderCompiler-5-6148
 Cmd: getPlatforms
 Cmd: compileSnippet
-  api=0 type=1 insize=952 outsize=222 kw= ok=1
+  api=8 type=1 insize=952 outsize=1138 kw= ok=1
 Unhandled exception: Readfile from pipe failed. GLE=Die Pipe wurde beendet.
 
 

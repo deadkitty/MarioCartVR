@@ -60,6 +60,16 @@ public class LapCounter : MonoBehaviour
         }
     }
 
+    public static void Initialize(GameObject currentLevel)
+    {
+        Transform finishLinesParent = currentLevel.transform.FindChild("FinishLine");
+
+        for (int i = 0; i < sInstance.finishLines.Length; ++i)
+        {
+            sInstance.finishLines[i] = finishLinesParent.GetChild(i).GetComponent<FinishLineListener>();
+        }
+    }
+
     public static void Reset()
     {
         CurrentLap = 0;

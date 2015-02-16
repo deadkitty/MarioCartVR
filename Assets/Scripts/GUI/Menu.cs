@@ -53,7 +53,7 @@ public class Menu : MonoBehaviour
 
     public EButton GetButton(int index = 0)
     {
-        buttons[selectedButtonIndex].renderer.material.color = Color.white;        
+        buttons[selectedButtonIndex].renderer.material.color = Color.white;
         selectedButtonIndex = index;
         buttons[selectedButtonIndex].renderer.material.color = Color.green;
         

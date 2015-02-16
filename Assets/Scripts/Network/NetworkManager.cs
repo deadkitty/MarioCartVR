@@ -10,11 +10,15 @@ public class NetworkManager : MonoBehaviour
 
     private const String typeName = "SuperVirtualCartGame";
 
-    public GameObject playerPrefab;
+    public GameObject cartPrefab;
+    public GameObject heliPrefab;
+
     private GameObject playerCart;
 
     private static int playerIndex = -1;    
     private static int playersWhoWantToReset = 0;
+
+    private static bool isHelicopter = false;
 
 //#if UNITY_EDITOR
 
@@ -41,7 +45,7 @@ public class NetworkManager : MonoBehaviour
     }
 
     void OnMasterServerEvent(MasterServerEvent msEvent)
-    {        
+    {
         if (msEvent == MasterServerEvent.HostListReceived)
         {
             Debug.Log("Hostlist Received");
@@ -52,6 +56,7 @@ public class NetworkManager : MonoBehaviour
 
             foreach (HostData data in hostList)
             {
+                
                 if (data.gameName == App.GameName && data.connectedPlayers < data.playerLimit)
                 {
                     JoinServer(data);
@@ -80,7 +85,7 @@ public class NetworkManager : MonoBehaviour
     void OnPlayerConnected(NetworkPlayer player)
     {
         Debug.Log("Player " + Network.connections.Length + " connected from " + player.ipAddress + ":" + player.port);
-
+        
         networkView.RPC("SetPlayerIndex", player, Network.connections.Length);
     }
 
@@ -103,16 +108,15 @@ public class NetworkManager : MonoBehaviour
 
     public static void StartServer()
     {
+        Debug.Log("Start Server: " + App.GameName);
+
         Network.InitializeServer(App.MaxPlayers - 1, 25000, !Network.HavePublicAddress());
         MasterServer.RegisterHost(typeName, App.GameName);
     }
 
     public static void StopServer()
     {
-        for (int i = 0; i < App.MaxPlayers; ++i)
-        {
-            Network.Destroy(Players.GetPlayer(i));
-        }
+        Network.Destroy(sInstance.playerCart);
 
         Network.Disconnect();
         MasterServer.UnregisterHost();
@@ -132,17 +136,23 @@ public class NetworkManager : MonoBehaviour
     public static void LeaveServer()
     {
         Network.Disconnect();
+        MasterServer.UnregisterHost();
+
+        for (int i = 0; i < App.maxPlayers; ++i )
+        {
+            Destroy(App.GetPlayer(i));
+        }
     }
 
     public static void Reset()
     {
         if (Network.isServer)
         {
-            sInstance.PlayerWantsToReset();
+            sInstance.PlayerWantsToReset(playerIndex);
         }
         else
         {
-            sInstance.networkView.RPC("PlayerWantsToReset", RPCMode.Server);
+            sInstance.networkView.RPC("PlayerWantsToReset", RPCMode.Server, playerIndex);
         }
     }
 
@@ -161,7 +171,15 @@ public class NetworkManager : MonoBehaviour
     private static void SpawnPlayer()
     {
         Transform spawn = App.Spawns[playerIndex].transform;
-        sInstance.playerCart = Network.Instantiate(sInstance.playerPrefab, spawn.position, spawn.rotation, 0) as GameObject;
+
+        if(isHelicopter)
+        {
+            sInstance.playerCart = Network.Instantiate(sInstance.heliPrefab, spawn.position, spawn.rotation, 0) as GameObject;
+        }
+        else
+        {
+            sInstance.playerCart = Network.Instantiate(sInstance.cartPrefab, spawn.position, spawn.rotation, 0) as GameObject;
+        }
     }
 
     #endregion
@@ -175,6 +193,11 @@ public class NetworkManager : MonoBehaviour
 
         playerIndex = index;
 
+        if(App.GameMode == App.EGameMode.pursuit && playerIndex == 1)
+        {
+            isHelicopter = true;
+        }
+
         PlayerReady();
     }
 
@@ -185,11 +208,14 @@ public class NetworkManager : MonoBehaviour
 
         SpawnPlayer();
         CartTimer.StartRaceTimer();
+        
     }
 
     [RPC]
-    void PlayerWantsToReset()
+    void PlayerWantsToReset(int playerIndex)
     {
+        Debug.Log("Player " + playerIndex + " wants to reset");
+
         ++playersWhoWantToReset;
 
         if (playersWhoWantToReset == Network.maxConnections + 1)
@@ -201,18 +227,16 @@ public class NetworkManager : MonoBehaviour
     [RPC]
     void ResetPlayer()
     {
-        if (networkView.isMine)
-        {
-            playerCart.transform.position = App.Spawns[playerIndex].transform.position;
-            playerCart.transform.rotation = App.Spawns[playerIndex].transform.rotation;
+        Debug.Log("ResetGame");
 
-            playerCart.GetComponent<ItemController>().currentItem = Item.EItemType.none;
+        Network.Destroy(playerCart);
 
-            playersWhoWantToReset = 0;
+        playersWhoWantToReset = 0;
 
-            CartTimer.Reset();
-            CartTimer.StartRaceTimer();
-        }
+        LapCounter.Reset();
+        CartTimer.Reset();
+
+        StartRace();
     }
 
     [RPC]
@@ -221,7 +245,7 @@ public class NetworkManager : MonoBehaviour
         Debug.Log("Player is Ready");
         Debug.Log("Connections: " + Network.connections.Length + " MaxConnections: " + Network.maxConnections);
 
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
 
         if (startOffline)
         {
@@ -231,18 +255,18 @@ public class NetworkManager : MonoBehaviour
         if (!startOffline)
         {
 
-//#endif
+#endif
 
             if (Network.connections.Length == Network.maxConnections)
             {
                 networkView.RPC("StartRace", RPCMode.AllBuffered);
             }
 
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
 
         }
 
-//#endif
+#endif
 
     }
 

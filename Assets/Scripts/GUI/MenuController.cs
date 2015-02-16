@@ -220,12 +220,14 @@ public class MenuController : MonoBehaviour
     private void SelectRacing()
     {
         App.GameMode = App.EGameMode.racing;
+        App.GameName = App.EGameMode.racing.ToString();
         ShowMenu(Menu.EType.levelSelection);
     }
 
     private void SelectPursuit()
     {
         App.GameMode = App.EGameMode.pursuit;
+        App.GameName = App.EGameMode.pursuit.ToString();
         ShowMenu(Menu.EType.levelSelection);
     }
 
@@ -237,6 +239,7 @@ public class MenuController : MonoBehaviour
     private void LoadLevel(App.ELevel level)
     {
         App.Level = level;
+        App.GameName += level.ToString();
         InstanciateGame();
     }
 
@@ -276,7 +279,8 @@ public class MenuController : MonoBehaviour
         if (LapCounter.raceFinished)
         {
             NetworkManager.Reset();
-            LapCounter.Reset();
+
+            ToggleMenu();
         }
     }
 

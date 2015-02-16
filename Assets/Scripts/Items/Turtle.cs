@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Turtle : MonoBehaviour 
 {
-    public GameObject otherPlayer;
+    public GameObject other;
     public GameObject owner;
 
     public float speed = 20.0f;
@@ -25,13 +25,13 @@ public class Turtle : MonoBehaviour
 
         if(networkView.isMine)
         {
-            owner = Players.GetPlayer(0);
-            otherPlayer = Players.GetPlayer(1);
+            owner = App.GetPlayer(0);
+            other = App.GetPlayer(1);
         }
         else
         {
-            otherPlayer = Players.GetPlayer(0);
-            owner = Players.GetPlayer(1);
+            other = App.GetPlayer(0);
+            owner = App.GetPlayer(1);
         }
 
         transform.rotation = new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w);
@@ -57,7 +57,7 @@ public class Turtle : MonoBehaviour
             lookDir = transform.forward;
             lookDir.y = 0.0f;
             
-            enemyDir = otherPlayer.transform.position - transform.position;
+            enemyDir = other.transform.position - transform.position;
             enemyDir.y = 0.0f;
 
             angle = Vector3.Angle(transform.forward, enemyDir);
@@ -69,8 +69,8 @@ public class Turtle : MonoBehaviour
                 Vector3 posLeft  = transform.position - transform.right * 0.5f;
 
                 //get distance from these points to the otherplayers position
-                float distanceRight = Vector3.Distance(posRight, otherPlayer.transform.position);
-                float distanceLeft  = Vector3.Distance(posLeft , otherPlayer.transform.position);
+                float distanceRight = Vector3.Distance(posRight, other.transform.position);
+                float distanceLeft  = Vector3.Distance(posLeft , other.transform.position);
 
                 //if rightDistance is lower than rotate turtleshell right
                 if (distanceRight < distanceLeft)
