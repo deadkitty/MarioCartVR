@@ -79,15 +79,22 @@ public class LapCounter : MonoBehaviour
     [RPC]
     void RaceFinished(bool wonRace)
     {
-        if (wonRace)
+        if(App.GameMode == App.EGameMode.racing)
         {
-            MenuController.ShowMenu(Menu.EType.popupWin);
+            if (wonRace)
+            {
+                MenuController.ShowMenu(Menu.EType.popupWin);
+            }
+            else
+            {
+                MenuController.ShowMenu(Menu.EType.popupLost);
+            }
+
+            raceFinished = true;
         }
         else
         {
-            MenuController.ShowMenu(Menu.EType.popupLost);
+            NetworkManager.RoundFinished();
         }
-
-        raceFinished = true;
     }
 }

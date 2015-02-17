@@ -84,6 +84,8 @@ public class MenuController : MonoBehaviour
 
     public static void ShowMenu(Menu.EType type)
     {
+        Debug.Log("Show Menu:" + type.ToString() + " Old Menu: " + App.CurrentMenu.ToString());
+
         currentMenu.ClearButtonColors();
         currentMenu.gameObject.SetActive(false);
 
@@ -132,6 +134,14 @@ public class MenuController : MonoBehaviour
             case Menu.EType.popupLost:
 
                 currentMenu = menus[5];
+                canToggle = false;
+                canGoBack = false;
+
+                break;
+
+            case Menu.EType.popupNext:
+
+                currentMenu = menus[6];
                 canToggle = false;
                 canGoBack = false;
 
@@ -286,7 +296,20 @@ public class MenuController : MonoBehaviour
 
     private void Next()
     {
+        Menu.EType lastType = App.CurrentMenu;
+
         ShowMenu(Menu.EType.ingame);
+
+        if (lastType == Menu.EType.popupNext)
+        {
+            NetworkManager.Reset();
+
+            ToggleMenu();
+        }
+        else
+        {
+            NetworkManager.CurrentRound = 0;
+        }        
     }
     
     #endregion

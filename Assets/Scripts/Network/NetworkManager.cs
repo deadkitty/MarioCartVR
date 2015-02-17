@@ -19,12 +19,15 @@ public class NetworkManager : MonoBehaviour
     private static int playersWhoWantToReset = 0;
 
     private static bool isHelicopter = false;
+    
+    private static int currentRound = 0;
+    private static float[] raceTimes = new float[App.MaxPlayers];
 
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
 
     public bool startOffline = false;
 
-//#endif
+#endif
 
     #endregion
 
@@ -33,6 +36,21 @@ public class NetworkManager : MonoBehaviour
     public static int PlayerIndex
     {
         get { return playerIndex; }
+    }
+
+    public static int CurrentRound
+    {
+        get { return NetworkManager.currentRound; }
+        set
+        {
+            Debug.Log("Current Round Changed, Old Value: " + currentRound + " New Value: " + value);
+            currentRound = value;
+        }
+    }
+
+    public static float[] RaceTimes
+    {
+        get { return NetworkManager.raceTimes; }
     }
 
     #endregion
@@ -168,17 +186,45 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    public static void RoundFinished()
+    {
+        if(!isHelicopter)
+        {
+            if (Network.isServer)
+            {
+                sInstance.RoundFinishedRPC(CartTimer.CurrentTime);
+            }
+            else
+            {
+                sInstance.networkView.RPC("RoundFinishedRPC", RPCMode.Server, CartTimer.CurrentTime);
+            }
+        }
+
+        if (CurrentRound == 0)
+        {
+            MenuController.ShowMenu(Menu.EType.popupNext);
+        }
+    }
+
     private static void SpawnPlayer()
     {
-        Transform spawn = App.Spawns[playerIndex].transform;
-
-        if(isHelicopter)
+        if(App.GameMode == App.EGameMode.racing)
         {
-            sInstance.playerCart = Network.Instantiate(sInstance.heliPrefab, spawn.position, spawn.rotation, 0) as GameObject;
+            Transform spawn = App.Spawns[playerIndex].transform;
+            sInstance.playerCart = Network.Instantiate(sInstance.cartPrefab, spawn.position, spawn.rotation, 0) as GameObject;
         }
         else
         {
-            sInstance.playerCart = Network.Instantiate(sInstance.cartPrefab, spawn.position, spawn.rotation, 0) as GameObject;
+            if (isHelicopter)
+            {
+                Transform spawn = App.Spawns[1].transform;
+                sInstance.playerCart = Network.Instantiate(sInstance.heliPrefab, spawn.position, spawn.rotation, 0) as GameObject;
+            }
+            else
+            {
+                Transform spawn = App.Spawns[0].transform;
+                sInstance.playerCart = Network.Instantiate(sInstance.cartPrefab, spawn.position, spawn.rotation, 0) as GameObject;
+            }
         }
     }
 
@@ -186,31 +232,54 @@ public class NetworkManager : MonoBehaviour
 
     #region RPC Functions
 
+    //Server
     [RPC]
     void SetPlayerIndex(int index)
     {
         Debug.Log("SetPlayerIndex " + index);
 
         playerIndex = index;
-
-        if(App.GameMode == App.EGameMode.pursuit && playerIndex == 1)
-        {
-            isHelicopter = true;
-        }
-
+        
         PlayerReady();
     }
 
+    //All
     [RPC]
     void StartRace()
     {
         Debug.Log("StartRace");
 
+        if(App.GameMode == App.EGameMode.pursuit)
+        {
+            if(Network.isServer)
+            {
+                if(currentRound == 0)
+                {
+                    isHelicopter = false;
+                }
+                else
+                {
+                    isHelicopter = true;
+                }
+            }
+            else
+            {
+                if (currentRound == 0)
+                {
+                    isHelicopter = true;
+                }
+                else
+                {
+                    isHelicopter = false;
+                }
+            }
+        }
+
         SpawnPlayer();
         CartTimer.StartRaceTimer();
-        
     }
 
+    //Server
     [RPC]
     void PlayerWantsToReset(int playerIndex)
     {
@@ -224,6 +293,7 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    //All
     [RPC]
     void ResetPlayer()
     {
@@ -233,12 +303,63 @@ public class NetworkManager : MonoBehaviour
 
         playersWhoWantToReset = 0;
 
+        if(!LapCounter.raceFinished)
+        {
+            ++CurrentRound;
+        }
+
         LapCounter.Reset();
         CartTimer.Reset();
-
+        
         StartRace();
     }
 
+    //Server
+    [RPC]
+    void RoundFinishedRPC(float time)
+    {
+        Debug.Log("Round " + CurrentRound + " Finished, Time: " + time);
+
+        raceTimes[CurrentRound] = time;
+
+        if(CurrentRound == 1)
+        {
+            //server cart was faster than client cart
+            if (raceTimes[0] < raceTimes[1])
+            {
+                PursuitFinished(true);
+                networkView.RPC("PursuitFinished", Network.connections[0], false);
+            }
+            else
+            {
+                PursuitFinished(false);
+                networkView.RPC("PursuitFinished", Network.connections[0], true);
+            }
+        }
+    }
+    
+    //All
+    [RPC]
+    void PursuitFinished(bool won)
+    {
+        Debug.Log("Pursuit Finished. Won Race:" + won);
+
+        if(won)
+        {
+            MenuController.ShowMenu(Menu.EType.popupWin);
+        }
+        else
+        {
+            MenuController.ShowMenu(Menu.EType.popupLost);
+        }
+
+        raceTimes[0] = 0.0f;
+        raceTimes[1] = 0.0f;
+
+        LapCounter.raceFinished = true;
+    }
+
+    //Server
     [RPC]
     void Ready()
     {

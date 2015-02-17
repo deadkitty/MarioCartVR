@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
         ingame,
         popupWin,
         popupLost,
+        popupNext,
         none,
     }
 
