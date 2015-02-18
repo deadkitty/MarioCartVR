@@ -7,6 +7,12 @@ Project("{E212E26B-061A-6BDE-C757-835EACA3C719}") = "MarioCartVR", "Assembly-CSh
 EndProject
 Project("{E212E26B-061A-6BDE-C757-835EACA3C719}") = "MarioCartVR", "Assembly-CSharp-Editor.csproj", "{7777BC14-9652-4D23-0AAB-8650EB27B0E5}"
 EndProject
+Project("{E212E26B-061A-6BDE-C757-835EACA3C719}") = "MarioCartVR", "Assembly-UnityScript-firstpass.unityproj", "{1E612587-3A5F-C51C-A474-BDAFCA9EF4C4}"
+EndProject
+Project("{E212E26B-061A-6BDE-C757-835EACA3C719}") = "MarioCartVR", "Assembly-UnityScript.unityproj", "{29F66C19-2C2D-6795-A34F-3848C3C8BE33}"
+EndProject
+Project("{E212E26B-061A-6BDE-C757-835EACA3C719}") = "MarioCartVR", "Assembly-UnityScript-Editor.unityproj", "{8245D266-AE2E-004A-AEAC-3F144F3B82FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,11 +31,23 @@ Global
 		{7777BC14-9652-4D23-0AAB-8650EB27B0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7777BC14-9652-4D23-0AAB-8650EB27B0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7777BC14-9652-4D23-0AAB-8650EB27B0E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E612587-3A5F-C51C-A474-BDAFCA9EF4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E612587-3A5F-C51C-A474-BDAFCA9EF4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E612587-3A5F-C51C-A474-BDAFCA9EF4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E612587-3A5F-C51C-A474-BDAFCA9EF4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F66C19-2C2D-6795-A34F-3848C3C8BE33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F66C19-2C2D-6795-A34F-3848C3C8BE33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F66C19-2C2D-6795-A34F-3848C3C8BE33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F66C19-2C2D-6795-A34F-3848C3C8BE33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8245D266-AE2E-004A-AEAC-3F144F3B82FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8245D266-AE2E-004A-AEAC-3F144F3B82FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8245D266-AE2E-004A-AEAC-3F144F3B82FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8245D266-AE2E-004A-AEAC-3F144F3B82FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																	GlobalSection(MonoDevelopProperties) = preSolution
+																																																																										GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

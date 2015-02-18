@@ -23,16 +23,11 @@ using UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Diagnostic display with a regular grid of cubes for visual testing of
-/// tracking and distortion.
+/// OVR grid cube.
 /// </summary>
 public class OVRGridCube : MonoBehaviour
 {
-	/// <summary>
-	/// The key that toggles the grid of cubes.
-	/// </summary>
 	public KeyCode GridKey                     = KeyCode.G;
-
 	private GameObject 	CubeGrid			   = null;
 
 	private bool 	CubeGridOn		    	   = false;
@@ -47,6 +42,13 @@ public class OVRGridCube : MonoBehaviour
 
 	// Handle to OVRCameraRig
 	private OVRCameraRig CameraController = null;
+
+	/// <summary>
+	/// Start this instance.
+	/// </summary>
+	void Start () 
+	{
+	}
 	
 	/// <summary>
 	/// Update this instance.
@@ -65,6 +67,9 @@ public class OVRGridCube : MonoBehaviour
 		CameraController = cameraController;
 	}
 
+	/// <summary>
+	/// Updates the cube grid.
+	/// </summary>
 	void UpdateCubeGrid()
 	{
 		// Toggle the grid cube display on 'G'
@@ -99,7 +104,10 @@ public class OVRGridCube : MonoBehaviour
 			CubeSwitchColorOld = CubeSwitchColor;
 		}
 	}
-
+	
+	/// <summary>
+	/// Creates the cube grid.
+	/// </summary>
 	void CreateCubeGrid()
 	{
 		Debug.LogWarning("Create CubeGrid");

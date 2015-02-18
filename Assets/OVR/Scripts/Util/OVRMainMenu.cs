@@ -20,11 +20,7 @@ limitations under the License.
 ************************************************************************************/
 
 // #define SHOW_DK2_VARIABLES
-
-// Use the Unity new GUI with Unity 4.6 or above.
-#if UNITY_4_6 || UNITY_5_0
-#define USE_NEW_GUI
-#endif
+// #define USE_NEW_GUI // You can use the Unity new GUI if you have Unity 4.6 or above.
 
 using System;
 using System.Collections;
@@ -51,39 +47,15 @@ using UnityEngine.UI;
 /// </summary>
 public class OVRMainMenu : MonoBehaviour
 {
-	/// <summary>
-	/// The amount of time in seconds that it takes for the menu to fade in.
-	/// </summary>
 	public float 	FadeInTime    	= 2.0f;
-
-	/// <summary>
-	/// An optional texture that appears before the menu fades in.
-	/// </summary>
 	public UnityEngine.Texture 	FadeInTexture 	= null;
-
-	/// <summary>
-	/// An optional font that replaces Unity's default Arial.
-	/// </summary>
 	public Font 	FontReplace		= null;
 
-	/// <summary>
-	/// The key that toggles the menu.
-	/// </summary>
 	public KeyCode	MenuKey			= KeyCode.Space;
-
-	/// <summary>
-	/// The key that quits the application.
-	/// </summary>
 	public KeyCode	QuitKey			= KeyCode.Escape;
 	
-	/// <summary>
-	/// Scene names to show on-screen for each of the scenes in Scenes.
-	/// </summary>
+	// Scenes to show onscreen
 	public string [] SceneNames;
-
-	/// <summary>
-	/// The set of scenes that the user can jump to.
-	/// </summary>
 	public string [] Scenes;
 	
 	private bool ScenesVisible   	= false;
@@ -100,8 +72,8 @@ public class OVRMainMenu : MonoBehaviour
 	private int    	VRVarsWidthX 	= 175;
 	private int    	VRVarsWidthY 	= 23;
 
-    private int    	StepY			= 25;
-
+	private int    	StepY			= 25;
+		
 	// Handle to OVRCameraRig
 	private OVRCameraRig CameraController = null;
 	
@@ -124,24 +96,27 @@ public class OVRMainMenu : MonoBehaviour
 	private float  TimeLeft			= 0; 				
 	private string strFPS			= "FPS: 0";
 	
+	// IPD shift from physical IPD
+	public float   IPDIncrement		= 0.0025f;
 	private string strIPD 			= "IPD: 0.000";	
 	
-	/// <summary>
-	/// Prediction (in ms)
-	/// </summary>
+	// Prediction (in ms)
 	public float   PredictionIncrement = 0.001f; // 1 ms
 	private string strPrediction       = "Pred: OFF";	
 	
+	// FOV Variables
+	public float   FOVIncrement		= 0.2f;
 	private string strFOV     		= "FOV: 0.0f";
+	
+	// Height adjustment
+	public float   HeightIncrement   = 0.01f;
 	private string strHeight     	 = "Height: 0.0f";
 	
-	/// <summary>
-	/// Controls how quickly the player's speed and rotation change based on input.
-	/// </summary>
+	// Speed and rotation adjustment
 	public float   SpeedRotationIncrement   	= 0.05f;
 	private string strSpeedRotationMultipler    = "Spd. X: 0.0f Rot. X: 0.0f";
 	
-	private bool   LoadingLevel 	= false;		
+	private bool   LoadingLevel 	= false;	
 	private float  AlphaFadeValue	= 1.0f;
 	private int    CurrentLevel		= 0;
 	
@@ -164,15 +139,11 @@ public class OVRMainMenu : MonoBehaviour
 	private GameObject RiftPresentGUIObject         = null;
 #endif
     
-	/// <summary>
-	/// We can set the layer to be anything we want to, this allows
-	/// a specific camera to render it.
-	/// </summary>
+	// We can set the layer to be anything we want to, this allows
+	// a specific camera to render it
 	public string 			LayerName 		 = "Default";
 
-	/// <summary>
-	/// Crosshair rendered onto 3D plane.
-	/// </summary>
+	// Crosshair system, rendered onto 3D plane
 	public UnityEngine.Texture  CrosshairImage 			= null;
 	private OVRCrosshair Crosshair        	= new OVRCrosshair();
 
@@ -243,15 +214,9 @@ public class OVRMainMenu : MonoBehaviour
 	        r.localPosition = new Vector3(0.01f, 0.17f, 0.53f);
 	        r.localEulerAngles = Vector3.zero;
 
-			Canvas c = NewGUIObject.AddComponent<Canvas>();
-#if (UNITY_5_0)
-			// TODO: Unity 5.0b11 has an older version of the new GUI being developed in Unity 4.6.
-			// Remove this once Unity 5 has a more recent merge of Unity 4.6.
+			Canvas c = NewGUIObject.AddComponent<Canvas>();        
 	        c.renderMode = RenderMode.World;
-#else
-	        c.renderMode = RenderMode.WorldSpace;
-#endif
-	        c.pixelPerfect = false;
+	        c.pixelPerfect = false;            
 #endif
     }
 	
@@ -259,8 +224,8 @@ public class OVRMainMenu : MonoBehaviour
 	/// Start this instance.
 	/// </summary>
 	void Start()
-	{		
-		AlphaFadeValue = 1.0f;
+	{
+		AlphaFadeValue = 1.0f;	
 		CurrentLevel   = 0;
 		PrevStartDown  = false;
 		PrevHatDown    = false;
@@ -855,10 +820,9 @@ public class OVRMainMenu : MonoBehaviour
         if (ShowVRVars == false)
             return;
 
-        
+        int y = VRVarsSY;
 
 #if !USE_NEW_GUI
-        int y = VRVarsSY;
 #if	SHOW_DK2_VARIABLES
 		// Print out Vision Mode
 		GuiHelper.StereoBox (VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY, 
@@ -963,13 +927,7 @@ public class OVRMainMenu : MonoBehaviour
         r.localEulerAngles = Vector3.zero;
         r.localScale = new Vector3(0.001f, 0.001f, 0.001f);
         Canvas c = RiftPresentGUIObject.AddComponent<Canvas>();
-#if UNITY_5_0
-		// TODO: Unity 5.0b11 has an older version of the new GUI being developed in Unity 4.6.
-	   	// Remove this once Unity 5 has a more recent merge of Unity 4.6.
-		c.renderMode = RenderMode.World;
-#else
-		c.renderMode = RenderMode.WorldSpace;
-#endif
+        c.renderMode = RenderMode.World;
         c.pixelPerfect = false;
         OVRUGUI.RiftPresentGUI(RiftPresentGUIObject);
 #endif

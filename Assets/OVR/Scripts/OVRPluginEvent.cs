@@ -30,8 +30,6 @@ public enum RenderEventType
 	// PC
 	BeginFrame = 0,
 	EndFrame = 1,
-	Initialize = 2,
-	Destroy = 3,
 
 	// Android
 	InitRenderThread = 0,
